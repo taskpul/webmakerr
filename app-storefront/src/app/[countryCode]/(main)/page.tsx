@@ -4,6 +4,7 @@ import FeaturedProducts from "@modules/home/components/featured-products"
 import Hero from "@modules/home/components/hero"
 import Features from "@modules/home/components/features"
 import CaseStudy from "@modules/home/components/case-study"
+import CommerceModules from "@modules/home/components/commerce-modules"
 import Guide from "@modules/home/components/guide"
 import { listCollections } from "@lib/data/collections"
 import { getRegion } from "@lib/data/regions"
@@ -37,6 +38,7 @@ export default async function Home(props: {
       <Guide />
       <Features />
       <CaseStudy />
+      <CommerceModules />
       <div className="py-12">
         <ul className="flex flex-col gap-x-6">
           <FeaturedProducts collections={collections} region={region} />
