@@ -6,6 +6,7 @@ import Features from "@modules/home/components/features"
 import CaseStudy from "@modules/home/components/case-study"
 import CommerceModules from "@modules/home/components/commerce-modules"
 import Guide from "@modules/home/components/guide"
+import Faq from "@modules/home/components/faq"
 import DemoCta from "@modules/home/components/demo-cta"
 import { listCollections } from "@lib/data/collections"
 import { getRegion } from "@lib/data/regions"
@@ -45,6 +46,7 @@ export default async function Home(props: {
           <FeaturedProducts collections={collections} region={region} />
         </ul>
       </div>
+      <Faq />
       <DemoCta />
     </>
   )
