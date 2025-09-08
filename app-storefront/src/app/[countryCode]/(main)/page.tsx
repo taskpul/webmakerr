@@ -4,6 +4,7 @@ import FeaturedProducts from "@modules/home/components/featured-products"
 import Hero from "@modules/home/components/hero"
 import Features from "@modules/home/components/features"
 import CaseStudy from "@modules/home/components/case-study"
+import Guide from "@modules/home/components/guide"
 import { listCollections } from "@lib/data/collections"
 import { getRegion } from "@lib/data/regions"
 
@@ -33,6 +34,7 @@ export default async function Home(props: {
   return (
     <>
       <Hero />
+      <Guide />
       <Features />
       <CaseStudy />
       <div className="py-12">
