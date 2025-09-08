@@ -10,7 +10,7 @@ const Hero = () => {
         <div className="content-container flex flex-col items-center text-center gap-6 text-[#C8C4E9]">
           <Heading
             level="h1"
-            className="text-3xl leading-10 font-normal max-w-3xl"
+            className="text-3xl font-normal max-w-3xl"
           >
             Modern marketplace platform without limits
           </Heading>
