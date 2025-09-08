@@ -7,6 +7,10 @@ const requiredEnvs = [
     description:
       "Learn how to create a publishable key: https://docs.medusajs.com/v2/resources/storefront-development/publishable-api-keys",
   },
+  {
+    key: "NEXT_PUBLIC_FACEBOOK_PIXEL_ID",
+    description: "Facebook Pixel ID used for Meta Pixel tracking",
+  },
 ]
 
 function checkEnvVariables() {

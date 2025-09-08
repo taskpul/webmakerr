@@ -110,6 +110,14 @@ NEXT_PUBLIC_STRIPE_KEY=<your-stripe-public-key>
 
 You'll also need to setup the integrations in your Medusa server. See the [Medusa documentation](https://docs.medusajs.com) for more information on how to configure [Stripe](https://docs.medusajs.com/resources/commerce-modules/payment/payment-provider/stripe#main).
 
+# Analytics
+
+To enable Facebook Pixel tracking, add the following to your `.env.local` file:
+
+```
+NEXT_PUBLIC_FACEBOOK_PIXEL_ID=<your-facebook-pixel-id>
+```
+
 # Resources
 
 ## Learn more about Medusa
