@@ -38,8 +38,8 @@ export default async function Home(props: {
   return (
     <>
       <Hero />
-      <Guide />
       <Features />
+      <Guide />
       <CaseStudy />
       <CommerceModules />
       <div className="py-12">
