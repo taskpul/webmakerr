@@ -2,24 +2,29 @@ import { Button, Heading } from "@medusajs/ui"
 
 const Hero = () => {
   return (
-    <div className="h-[75vh] w-full border-b border-ui-border-base relative bg-ui-bg-interactive">
-      <div className="absolute inset-0 z-10 flex flex-col justify-center items-center text-center px-4 gap-6">
+    <div
+      className="h-[52.5vh] w-full border-b border-ui-border-base relative"
+      style={{ backgroundColor: "#2A0C6A" }}
+    >
+      <div className="absolute inset-0 z-10 flex flex-col justify-center items-center text-center px-4 gap-6 text-[#C8C4E9]">
         <Heading
           level="h1"
-          className="text-3xl leading-10 text-ui-fg-on-color font-normal max-w-3xl"
+          className="text-3xl leading-10 font-normal max-w-3xl"
         >
           Modern marketplace platform without limits
         </Heading>
         <Heading
           level="h2"
-          className="text-base text-ui-fg-on-color/80 font-normal max-w-2xl"
+          className="text-base font-normal max-w-2xl opacity-80"
         >
-          Open source marketplace platform to build and resell tech. Modern
-          tech, unlimited customization, no transaction fees.
+          Open source marketplace platform to build and resell tech. Modern tech,
+          unlimited customization, no transaction fees.
         </Heading>
         <div className="flex items-center gap-4 mt-4">
           <a href="https://cal.com/medusajs" target="_blank">
-            <Button variant="primary">Schedule demo</Button>
+            <Button className="bg-white text-[#2A0C6A] hover:bg-white hover:text-[#2A0C6A]">
+              Schedule demo
+            </Button>
           </a>
           <a
             href="https://github.com/medusajs/nextjs-starter-medusa"
@@ -27,7 +32,7 @@ const Hero = () => {
           >
             <Button
               variant="transparent"
-              className="text-ui-fg-on-color border border-ui-border-interactive"
+              className="text-white border border-white"
             >
               Visit GitHub
             </Button>
