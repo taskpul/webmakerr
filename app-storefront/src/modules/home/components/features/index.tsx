@@ -1,61 +1,69 @@
+import { Fragment } from "react"
+
 import {
+  CloudArrowUp,
   RocketLaunchSolid,
   ComputerDesktopSolid,
   PuzzleSolid,
+  SquaresPlus,
   Brackets,
-  CloudArrowUp,
 } from "@medusajs/icons"
-import { Heading, Text } from "@medusajs/ui"
+import { Badge, Text } from "@medusajs/ui"
 
-const items = [
-  {
-    icon: RocketLaunchSolid,
-    title: "Starters",
-    description: "Complete starters to launch modules.",
-  },
-  {
-    icon: ComputerDesktopSolid,
-    title: "Admin",
-    description: "Customizable dashboard for your commerce.",
-  },
-  {
-    icon: PuzzleSolid,
-    title: "Commerce Modules",
-    description: "Advanced ecommerce logic for your use case.",
-  },
-  {
-    icon: Brackets,
-    title: "Framework",
-    description: "Tooling to build your own customizations.",
-  },
-  {
-    icon: CloudArrowUp,
-    title: "Cloud",
-    description: "Link to GitHub pushes to deploy.",
-  },
+const features = [
+  { icon: CloudArrowUp, title: "Cloud", color: "text-ui-tag-blue-icon" },
+  { icon: RocketLaunchSolid, title: "Native", color: "text-ui-tag-purple-icon" },
+  { icon: ComputerDesktopSolid, title: "Headless", color: "text-ui-tag-orange-icon" },
+  { icon: PuzzleSolid, title: "Composable", color: "text-ui-tag-green-icon" },
+  { icon: SquaresPlus, title: "Extensible", color: "text-ui-tag-red-icon" },
+  { icon: Brackets, title: "Open Source", color: "text-ui-tag-neutral-icon" },
+]
+
+const brands = [
+  { name: "LUSH" },
+  { name: "BREITLING 1884" },
+  { name: "Zardo" },
+  { name: "PDGPE" },
+  { name: "unicef" },
+  { name: "Opbender" },
 ]
 
 const Features = () => {
   return (
     <div className="border-b border-ui-border-base bg-ui-bg-base">
-      <div className="content-container flex gap-8 overflow-x-auto py-12 md:justify-center">
-        {items.map(({ icon: Icon, title, description }) => (
-          <div
-            key={title}
-            className="flex min-w-[200px] shrink-0 flex-col items-center text-center"
-          >
-            <Icon className="h-6 w-6 text-ui-fg-subtle" />
-            <Heading level="h3" className="mt-3 text-base font-medium">
-              {title}
-            </Heading>
-            <Text className="mt-1 text-small-regular text-ui-fg-muted">
-              {description}
-            </Text>
-          </div>
-        ))}
+      <div className="content-container flex flex-col items-center py-12">
+        <div className="flex flex-wrap items-center justify-center gap-2 text-ui-fg-base">
+          {features.map(({ icon: Icon, title, color }, i) => (
+            <Fragment key={title}>
+              <div className="flex items-center gap-2">
+                <Icon className={`h-4 w-4 ${color}`} />
+                <Text className="text-small-regular">{title}</Text>
+              </div>
+              {i < features.length - 1 && (
+                <span className="text-ui-fg-muted">•</span>
+              )}
+            </Fragment>
+          ))}
+        </div>
+        <Text className="mt-12 text-base text-ui-fg-subtle">
+          Trusted by global brands
+        </Text>
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-8">
+          {brands.map(({ name }) => (
+            <div key={name} className="flex flex-col items-center">
+              <Text className="text-2xl font-semibold text-ui-fg-base">
+                {name}
+              </Text>
+              <Badge color="orange" size="small" className="mt-2">
+                Case study
+              </Badge>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   )
 }
 
 export default Features
+
