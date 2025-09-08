@@ -43,7 +43,7 @@ export default async function Nav() {
             <Suspense
               fallback={
                 <LocalizedClientLink
-                  className="hover:text-ui-fg-base flex gap-2"
+                  className="hover:text-ui-fg-base flex gap-2 whitespace-nowrap"
                   href="/cart"
                   data-testid="nav-cart-link"
                 >
@@ -53,7 +53,7 @@ export default async function Nav() {
             >
               <CartButton />
             </Suspense>
-            <Button asChild>
+            <Button asChild className="whitespace-nowrap">
               <LocalizedClientLink href="/start">Start for Free</LocalizedClientLink>
             </Button>
           </div>
