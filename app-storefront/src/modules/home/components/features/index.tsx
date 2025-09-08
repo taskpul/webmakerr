@@ -38,7 +38,7 @@ const items = [
 const Features = () => {
   return (
     <div className="border-b border-ui-border-base bg-ui-bg-base">
-      <div className="flex gap-8 overflow-x-auto px-6 py-6 sm:px-8 md:justify-center">
+      <div className="content-container flex gap-8 overflow-x-auto py-12 md:justify-center">
         {items.map(({ icon: Icon, title, description }) => (
           <div
             key={title}
