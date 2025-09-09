@@ -1,6 +1,6 @@
 import { Metadata } from "next"
 import { Badge, Button, Heading, Table, Text } from "@medusajs/ui"
-import { CheckMini } from "@medusajs/icons"
+import { CheckMini, CheckCircleSolid } from "@medusajs/icons"
 
 const plans = [
   {
@@ -270,11 +270,11 @@ const PricingPage = () => {
                   {advantage.title}
                 </Table.Cell>
                 <Table.Cell className="text-center">
-                  <CheckMini className="mx-auto h-5 w-5 text-green-500" />
+                  <CheckCircleSolid className="mx-auto h-5 w-5 text-green-500" />
                 </Table.Cell>
                 <Table.Cell className="text-center">
                   {advantage.openSource === "check" && (
-                    <CheckMini className="mx-auto h-5 w-5 text-ui-fg-interactive" />
+                    <CheckCircleSolid className="mx-auto h-5 w-5 text-ui-fg-interactive" />
                   )}
                   {advantage.openSource === "self-managed" && (
                     <Text className="text-small-regular text-ui-fg-subtle">
