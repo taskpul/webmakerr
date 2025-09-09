@@ -59,6 +59,27 @@ const plans = [
   },
 ] as const
 
+const supportFeatures = [
+  "Discovery sessions",
+  "Technical architecture guidance",
+  "Pairing sessions with Solution Engineer",
+  "Dedicated Slack channel",
+  "Dedicated support",
+  "Integrated technical resources to manage project-level aspects",
+  "Dedicated Delivery Lead",
+  "Quarterly business review sessions",
+] as const
+
+const unlimitedFeatures = [
+  "Unlimited Stores",
+  "Unlimited Integrations",
+  "Unlimited Layouts / UI",
+  "Unlimited Datastreams",
+  "Unlimited Environments",
+  "Unlimited Inventory Locations",
+  "Unlimited Storage",
+] as const
+
 export const metadata: Metadata = {
   title: "Pricing",
 }
@@ -123,6 +144,39 @@ const PricingPage = () => {
             </Text>
           </div>
         ))}
+      </div>
+      <div className="mt-16 rounded-xl border bg-ui-bg-base p-8 text-center shadow-elevation-card-rest">
+        <Heading level="h2" className="text-xl font-medium">
+          Included in each Saver Cloud plan
+        </Heading>
+        <Text className="mt-2 text-ui-fg-subtle">
+          All Cloud customers are provided ongoing Delivery and support help to help accelerate discovery and implementation.
+        </Text>
+        <div className="mt-6 flex flex-wrap justify-center gap-3">
+          {supportFeatures.map((feature) => (
+            <Badge key={feature} color="orange" className="text-small-regular">
+              {feature}
+            </Badge>
+          ))}
+        </div>
+        <Text className="mt-10 text-ui-fg-subtle">
+          Unlimited access to the commerce feature-sets in your theme without artificial constraints.
+        </Text>
+        <div className="mt-6 flex flex-wrap justify-center gap-3">
+          {unlimitedFeatures.map((feature) => (
+            <Badge
+              key={feature}
+              color="green"
+              className="flex items-center gap-1 text-small-regular"
+            >
+              <CheckMini className="h-4 w-4" />
+              {feature}
+            </Badge>
+          ))}
+        </div>
+        <Text className="mt-2 text-small-regular text-ui-fg-subtle">
+          *Unlimited resources are subject to fair usage policies.
+        </Text>
       </div>
     </div>
   )
