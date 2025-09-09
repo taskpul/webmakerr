@@ -1,4 +1,5 @@
 import { Metadata } from "next"
+import Script from "next/script"
 
 import FeaturedProducts from "@modules/home/components/featured-products"
 import Hero from "@modules/home/components/hero"
@@ -39,6 +40,21 @@ export default async function Home(props: {
 
   return (
     <>
+      <Script id="chatwoot-script" strategy="lazyOnload">
+        {`(function(d,t) {
+    var BASE_URL="http://91.99.198.182:3000";
+    var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src=BASE_URL+"/packs/js/sdk.js";
+    g.async = true;
+    s.parentNode.insertBefore(g,s);
+    g.onload=function(){
+      window.chatwootSDK.run({
+        websiteToken: 'oBf1gBsAco2ZJUAhbqS1akh3',
+        baseUrl: BASE_URL
+      })
+    }
+  })(document,"script");`}
+      </Script>
       <Hero />
       <Features />
       <CommerceExperience />
