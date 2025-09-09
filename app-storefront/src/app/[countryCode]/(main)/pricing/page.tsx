@@ -1,6 +1,7 @@
 import { Metadata } from "next"
 import { Badge, Button, Heading, Table, Text } from "@medusajs/ui"
-import { CheckMini, CheckCircleSolid } from "@medusajs/icons"
+import { CheckMini, CheckCircleSolid, PlusMini, MinusMini } from "@medusajs/icons"
+import * as Accordion from "@radix-ui/react-accordion"
 
 const plans = [
   {
@@ -140,6 +141,35 @@ const advantages = [
   {
     title: "Automatic backups",
     openSource: "self-managed",
+  },
+] as const
+
+const faqs = [
+  {
+    question: "How do the versions of Saleor Cloud or OSS differ?",
+    answer:
+      "Saleor Cloud is a fully managed platform, while OSS is the self-hosted open-source version you manage yourself.",
+  },
+  {
+    question: "Can I switch between Saleor Cloud or OSS?",
+    answer:
+      "Yes. You can export your data and move between the two deployments whenever your needs change.",
+  },
+  {
+    question: "How much will customizations to fit my needs on Saleor Cloud cost?",
+    answer:
+      "Customization costs depend on scope. Share your requirements and our team will provide a tailored estimate.",
+  },
+  {
+    question:
+      "Saleor's missing a feature that Platform X provides. Why should we stay with Saleor?",
+    answer:
+      "Saleor's modular architecture lets you build or integrate any feature, keeping your stack flexible and future-proof.",
+  },
+  {
+    question: "How much does a migration from my current platform cost?",
+    answer:
+      "Migration pricing varies with catalogue size and complexity. Contact us for a detailed quote.",
   },
 ] as const
 
@@ -291,6 +321,57 @@ const PricingPage = () => {
             ))}
           </Table.Body>
         </Table>
+      </div>
+
+      <div className="mt-16 flex flex-col items-center">
+        <div className="flex gap-4">
+          <Button variant="secondary">Contact us</Button>
+          <Button>Request an open quote</Button>
+        </div>
+        <Text className="mt-10 max-w-3xl text-center text-xl text-ui-fg-base md:text-2xl">
+          "One of the biggest benefits of going Cloud is access to the delivery team. Different to our past experiences, the Saleor delivery team is supportive, it's always prompt, direct, and professional."
+        </Text>
+        <Text className="mt-2 text-center text-small-regular text-ui-fg-subtle">
+          Mario Besas, Managing Partner and CTO at{" "}
+          <a href="#" className="text-ui-fg-interactive">
+            sirvoy
+          </a>
+        </Text>
+        <div className="mt-16 w-full max-w-3xl">
+          <Heading level="h2" className="text-center text-xl font-medium">
+            Any questions?
+          </Heading>
+          <Text className="mt-2 text-center text-ui-fg-subtle">
+            You can always get in touch with us and ask your question at{" "}
+            <a href="mailto:hello@saleor.io" className="text-ui-fg-interactive">
+              hello@saleor.io
+            </a>
+          </Text>
+          <Accordion.Root
+            type="single"
+            collapsible
+            className="mt-8 border-t border-ui-border-base"
+          >
+            {faqs.map(({ question, answer }, i) => (
+              <Accordion.Item
+                key={question}
+                value={`item-${i}`}
+                className="border-b border-ui-border-base"
+              >
+                <Accordion.Header>
+                  <Accordion.Trigger className="group flex w-full items-center justify-between py-4 text-left">
+                    <Text className="text-base">{question}</Text>
+                    <PlusMini className="h-5 w-5 shrink-0 text-ui-fg-subtle group-radix-state-open:hidden" />
+                    <MinusMini className="hidden h-5 w-5 shrink-0 text-ui-fg-subtle group-radix-state-open:block" />
+                  </Accordion.Trigger>
+                </Accordion.Header>
+                <Accordion.Content className="pb-4">
+                  <Text className="text-base text-ui-fg-subtle">{answer}</Text>
+                </Accordion.Content>
+              </Accordion.Item>
+            ))}
+          </Accordion.Root>
+        </div>
       </div>
     </div>
   )
