@@ -82,64 +82,24 @@ const unlimitedFeatures = [
 
 const advantages = [
   {
-    title: "Discovery sessions and Solution architects help",
-    openSource: null,
+    title: "Sandboxes",
+    openSource: "Self-managed",
+    selfHosted: "Self-made",
   },
   {
-    title: "Technical onboarding",
-    openSource: null,
+    title: "Version management",
+    openSource: "Self-managed",
+    selfHosted: "Self-made",
   },
   {
-    title: "Ongoing support and technical help",
-    openSource: null,
+    title: "Control panel",
+    openSource: "Self-made",
+    selfHosted: "Self-made",
   },
   {
-    title: "Early patch releases",
-    openSource: null,
-  },
-  {
-    title: "SLA",
-    openSource: null,
-  },
-  {
-    title: "Zero down time updates",
-    openSource: null,
-  },
-  {
-    title: "App integration for Saleor",
-    openSource: "check",
-  },
-  {
-    title: "PCI DSS compliance",
-    openSource: null,
-  },
-  {
-    title: "DDoS protection",
-    openSource: "self-managed",
-  },
-  {
-    title: "SEO",
-    openSource: "self-managed",
-  },
-  {
-    title: "Auto scaling",
-    openSource: "self-managed",
-  },
-  {
-    title: "Snapshot management",
-    openSource: "self-managed",
-  },
-  {
-    title: "Backups",
-    openSource: "self-managed",
-  },
-  {
-    title: "CDN",
-    openSource: "self-managed",
-  },
-  {
-    title: "Automatic backups",
-    openSource: "self-managed",
+    title: "Command line tools",
+    openSource: "Self-made",
+    selfHosted: "Self-made",
   },
 ] as const
 
@@ -255,42 +215,49 @@ const PricingPage = () => {
               <Table.HeaderCell className="text-center">
                 Cloud
               </Table.HeaderCell>
-              <Table.HeaderCell className="text-center">
-                Open source
-              </Table.HeaderCell>
-              <Table.HeaderCell className="text-center">
-                Self hosted
-              </Table.HeaderCell>
-            </Table.Row>
-          </Table.Header>
-          <Table.Body>
-            {advantages.map((advantage) => (
-              <Table.Row key={advantage.title}>
-                <Table.Cell className="py-3">
-                  {advantage.title}
-                </Table.Cell>
-                <Table.Cell className="text-center">
-                  <CheckCircleSolid className="mx-auto h-5 w-5 text-green-500" />
-                </Table.Cell>
-                <Table.Cell className="text-center">
-                  {advantage.openSource === "check" && (
-                    <CheckCircleSolid className="mx-auto h-5 w-5 text-ui-fg-interactive" />
-                  )}
-                  {advantage.openSource === "self-managed" && (
-                    <Text className="text-small-regular text-ui-fg-subtle">
-                      Self-managed
-                    </Text>
-                  )}
-                </Table.Cell>
-                <Table.Cell className="text-center">
+          <Table.HeaderCell className="text-center">
+            Open source
+          </Table.HeaderCell>
+          <Table.HeaderCell className="text-center">
+            Self hosted
+          </Table.HeaderCell>
+        </Table.Row>
+      </Table.Header>
+      <Table.Body>
+        {advantages.map((advantage) => (
+          <Table.Row key={advantage.title}>
+            <Table.Cell className="py-3">
+              {advantage.title}
+            </Table.Cell>
+            <Table.Cell className="text-center">
+              <CheckCircleSolid className="mx-auto h-5 w-5 text-green-500" />
+            </Table.Cell>
+            <Table.Cell className="text-center">
+              {advantage.openSource === "check" && (
+                <CheckCircleSolid className="mx-auto h-5 w-5 text-ui-fg-interactive" />
+              )}
+              {advantage.openSource &&
+                advantage.openSource !== "check" && (
                   <Text className="text-small-regular text-ui-fg-subtle">
-                    Self-managed
+                    {advantage.openSource}
                   </Text>
-                </Table.Cell>
-              </Table.Row>
-            ))}
-          </Table.Body>
-        </Table>
+                )}
+            </Table.Cell>
+            <Table.Cell className="text-center">
+              {advantage.selfHosted === "check" && (
+                <CheckCircleSolid className="mx-auto h-5 w-5 text-ui-fg-interactive" />
+              )}
+              {(!advantage.selfHosted ||
+                advantage.selfHosted !== "check") && (
+                <Text className="text-small-regular text-ui-fg-subtle">
+                  {advantage.selfHosted ?? "Self-managed"}
+                </Text>
+              )}
+            </Table.Cell>
+          </Table.Row>
+        ))}
+      </Table.Body>
+    </Table>
       </div>
     </div>
   )
