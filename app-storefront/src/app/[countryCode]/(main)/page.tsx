@@ -42,7 +42,7 @@ export default async function Home(props: {
     <>
       <Script id="chatwoot-script" strategy="lazyOnload">
         {`(function(d,t) {
-    var BASE_URL="http://91.99.198.182:3000";
+    var BASE_URL="http://chat.webmakerr.com";
     var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
     g.src=BASE_URL+"/packs/js/sdk.js";
     g.async = true;
