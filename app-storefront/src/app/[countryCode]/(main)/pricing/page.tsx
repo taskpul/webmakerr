@@ -1,5 +1,5 @@
 import { Metadata } from "next"
-import { Badge, Button, Heading, Text } from "@medusajs/ui"
+import { Badge, Button, Heading, Table, Text } from "@medusajs/ui"
 import { CheckMini } from "@medusajs/icons"
 
 const plans = [
@@ -78,6 +78,69 @@ const unlimitedFeatures = [
   "Unlimited Environments",
   "Unlimited Inventory Locations",
   "Unlimited Storage",
+] as const
+
+const advantages = [
+  {
+    title: "Discovery sessions and Solution architects help",
+    openSource: null,
+  },
+  {
+    title: "Technical onboarding",
+    openSource: null,
+  },
+  {
+    title: "Ongoing support and technical help",
+    openSource: null,
+  },
+  {
+    title: "Early patch releases",
+    openSource: null,
+  },
+  {
+    title: "SLA",
+    openSource: null,
+  },
+  {
+    title: "Zero down time updates",
+    openSource: null,
+  },
+  {
+    title: "App integration for Saleor",
+    openSource: "check",
+  },
+  {
+    title: "PCI DSS compliance",
+    openSource: null,
+  },
+  {
+    title: "DDoS protection",
+    openSource: "self-managed",
+  },
+  {
+    title: "SEO",
+    openSource: "self-managed",
+  },
+  {
+    title: "Auto scaling",
+    openSource: "self-managed",
+  },
+  {
+    title: "Snapshot management",
+    openSource: "self-managed",
+  },
+  {
+    title: "Backups",
+    openSource: "self-managed",
+  },
+  {
+    title: "CDN",
+    openSource: "self-managed",
+  },
+  {
+    title: "Automatic backups",
+    openSource: "self-managed",
+  },
 ] as const
 
 export const metadata: Metadata = {
@@ -177,6 +240,57 @@ const PricingPage = () => {
         <Text className="mt-2 text-small-regular text-ui-fg-subtle">
           *Unlimited resources are subject to fair usage policies.
         </Text>
+      </div>
+      <div className="mt-16">
+        <Heading
+          level="h2"
+          className="text-center text-xl font-medium"
+        >
+          Advantages of Saleor Cloud over other hosting options
+        </Heading>
+        <Table className="mt-6">
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell></Table.HeaderCell>
+              <Table.HeaderCell className="text-center">
+                Cloud
+              </Table.HeaderCell>
+              <Table.HeaderCell className="text-center">
+                Open source
+              </Table.HeaderCell>
+              <Table.HeaderCell className="text-center">
+                Self hosted
+              </Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
+          <Table.Body>
+            {advantages.map((advantage) => (
+              <Table.Row key={advantage.title}>
+                <Table.Cell className="py-3">
+                  {advantage.title}
+                </Table.Cell>
+                <Table.Cell className="text-center">
+                  <CheckMini className="mx-auto h-5 w-5 text-green-500" />
+                </Table.Cell>
+                <Table.Cell className="text-center">
+                  {advantage.openSource === "check" && (
+                    <CheckMini className="mx-auto h-5 w-5 text-ui-fg-interactive" />
+                  )}
+                  {advantage.openSource === "self-managed" && (
+                    <Text className="text-small-regular text-ui-fg-subtle">
+                      Self-managed
+                    </Text>
+                  )}
+                </Table.Cell>
+                <Table.Cell className="text-center">
+                  <Text className="text-small-regular text-ui-fg-subtle">
+                    Self-managed
+                  </Text>
+                </Table.Cell>
+              </Table.Row>
+            ))}
+          </Table.Body>
+        </Table>
       </div>
     </div>
   )
