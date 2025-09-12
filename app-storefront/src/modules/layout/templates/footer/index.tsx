@@ -1,10 +1,10 @@
 import { Text } from "@medusajs/ui"
 
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
-import Mercur from "@modules/common/icons/mercur"
 import Linkedin from "@modules/common/icons/linkedin"
 import X from "@modules/common/icons/x"
 import Youtube from "@modules/common/icons/youtube"
+import Image from "next/image"
 
 export default function Footer() {
   return (
@@ -13,10 +13,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 xsmall:grid-cols-3 items-center gap-y-6">
           <LocalizedClientLink
             href="/"
-            className="flex items-center gap-x-2 justify-self-center xsmall:justify-self-start"
+            className="flex items-center justify-self-center xsmall:justify-self-start"
           >
-            <Mercur className="h-6 w-6" />
-            <span className="txt-compact-medium text-ui-fg-base">Mercur</span>
+            <Image
+              src="/Logo-Colour.svg"
+              alt="Medusa Store logo"
+              width={138}
+              height={39}
+            />
           </LocalizedClientLink>
           <nav className="flex items-center justify-center gap-x-6 justify-self-center">
             <LocalizedClientLink
