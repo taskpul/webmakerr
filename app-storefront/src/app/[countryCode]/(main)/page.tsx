@@ -9,6 +9,7 @@ import SalesWorkflow from "@modules/home/components/sales-workflow"
 import ClientExperience from "@modules/home/components/client-experience"
 import MoreFeatures from "@modules/home/components/more-features"
 import CommerceExperience from "@modules/home/components/commerce-experience"
+import Testimonials from "@modules/home/components/testimonials"
 import CommerceModules from "@modules/home/components/commerce-modules"
 import Faq from "@modules/home/components/faq"
 import DemoCta from "@modules/home/components/demo-cta"
@@ -63,6 +64,7 @@ export default async function Home(props: {
       <ClientExperience />
       <MoreFeatures />
       <CommerceExperience />
+      <Testimonials />
       <CommerceModules />
       <div className="py-12">
         <ul className="flex flex-col gap-x-6">
