@@ -35,7 +35,7 @@ const AppointmentScheduling = () => {
         </LocalizedClientLink>
         <Heading
           level="h2"
-          className="mt-4 max-w-2xl text-center text-3xl font-medium"
+          className="mt-4 max-w-2xl text-center text-3xl font-bold leading-10"
         >
           With us, appointment scheduling is easy
         </Heading>
@@ -53,7 +53,7 @@ const AppointmentScheduling = () => {
                 <Icon className="h-8 w-8 text-ui-fg-subtle" />
               </div>
               <div className="flex flex-col gap-2">
-                <Heading level="h3" className="text-lg font-medium">
+                <Heading level="h3" className="text-lg font-bold">
                   {title}
                 </Heading>
                 <Text className="text-base text-ui-fg-subtle">{description}</Text>
