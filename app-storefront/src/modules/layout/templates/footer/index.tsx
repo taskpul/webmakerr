@@ -9,7 +9,7 @@ import Youtube from "@modules/common/icons/youtube"
 export default function Footer() {
   return (
     <footer className="border-t border-ui-border-base w-full">
-      <div className="content-container flex flex-col w-full py-12 gap-y-8">
+      <div className="container w-full gap-y-8 pt-12 pb-12">
         <div className="grid grid-cols-1 xsmall:grid-cols-3 items-center gap-y-6">
           <LocalizedClientLink
             href="/"

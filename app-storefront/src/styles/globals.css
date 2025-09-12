@@ -50,6 +50,22 @@
 }
 
 @layer components {
+  .container {
+    @apply flex flex-col items-center w-full max-w-[1200px] mx-auto pt-24 px-3 relative overflow-visible gap-0;
+  }
+
+  @media (max-width: 1024px) {
+    .container {
+      @apply pt-16 px-6 max-w-full;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      @apply pt-12 px-4;
+    }
+  }
+
   .content-container {
     @apply max-w-[1440px] w-full mx-auto px-6;
   }
