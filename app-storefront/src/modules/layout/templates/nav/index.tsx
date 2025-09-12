@@ -7,6 +7,7 @@ import { Button } from "@medusajs/ui"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import CartButton from "@modules/layout/components/cart-button"
 import SideMenu from "@modules/layout/components/side-menu"
+import { ShoppingCart } from "@medusajs/icons"
 
 export default async function Nav() {
   const regions = await listRegions().then((regions: StoreRegion[]) => regions)
@@ -51,11 +52,12 @@ export default async function Nav() {
             <Suspense
               fallback={
                 <LocalizedClientLink
-                  className="hover:text-ui-fg-base flex gap-2 whitespace-nowrap"
+                  className="hover:text-ui-fg-base flex items-center"
                   href="/cart"
                   data-testid="nav-cart-link"
+                  aria-label="Cart"
                 >
-                  Cart (0)
+                  <ShoppingCart className="w-6 h-6" />
                 </LocalizedClientLink>
               }
             >
