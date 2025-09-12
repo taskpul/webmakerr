@@ -75,7 +75,7 @@ const SideMenu = ({ regions }: { regions: HttpTypes.StoreRegion[] | null }) => {
                 leaveFrom="opacity-100"
                 leaveTo="opacity-0"
               >
-                <PopoverPanel className="absolute left-0 top-full z-30 w-screen max-w-lg text-ui-fg-base mt-2 px-2">
+                <PopoverPanel className="absolute left-full top-full z-30 w-screen max-w-lg text-ui-fg-base mt-2 px-2 ml-4">
                   <div
                     data-testid="nav-menu-popup"
                     className="bg-white rounded-rounded shadow-md border border-ui-border-base p-6 flex flex-col gap-y-8"
@@ -84,7 +84,7 @@ const SideMenu = ({ regions }: { regions: HttpTypes.StoreRegion[] | null }) => {
                       <Text className="txt-compact-medium mb-4">
                         By team size
                       </Text>
-                      <ul className="flex flex-col gap-4">
+                      <ul className="grid grid-cols-2 gap-4">
                         {teamSizeItems.map((item) => {
                           const Icon = item.icon
                           return (

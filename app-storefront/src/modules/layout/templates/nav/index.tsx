@@ -8,6 +8,7 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 import CartButton from "@modules/layout/components/cart-button"
 import SideMenu from "@modules/layout/components/side-menu"
 import { ShoppingCart } from "@medusajs/icons"
+import MobileMenu from "@modules/layout/components/mobile-menu"
 
 export default async function Nav() {
   const regions = await listRegions().then((regions: StoreRegion[]) => regions)
@@ -63,6 +64,7 @@ export default async function Nav() {
             >
               <CartButton />
             </Suspense>
+            <MobileMenu />
             <Button asChild className="whitespace-nowrap">
               <LocalizedClientLink href="/start">Start for Free</LocalizedClientLink>
             </Button>
