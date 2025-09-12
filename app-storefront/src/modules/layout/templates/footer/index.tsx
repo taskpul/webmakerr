@@ -13,12 +13,12 @@ export default function Footer() {
         <div className="grid grid-cols-1 xsmall:grid-cols-3 items-center gap-y-6">
           <LocalizedClientLink
             href="/"
-            className="flex items-center gap-x-2 justify-self-start"
+            className="flex items-center gap-x-2 justify-self-center xsmall:justify-self-start"
           >
             <Mercur className="h-6 w-6" />
             <span className="txt-compact-medium text-ui-fg-base">Mercur</span>
           </LocalizedClientLink>
-          <nav className="flex items-center justify-center gap-x-6">
+          <nav className="flex items-center justify-center gap-x-6 justify-self-center">
             <LocalizedClientLink
               href="#"
               className="text-ui-fg-subtle hover:text-ui-fg-base txt-small"
@@ -54,7 +54,7 @@ export default function Footer() {
               GitHub
             </a>
           </nav>
-          <div className="flex items-center gap-x-2 justify-self-end">
+          <div className="flex items-center gap-x-2 justify-self-center xsmall:justify-self-end">
             <a
               href="https://www.linkedin.com"
               target="_blank"
@@ -82,10 +82,10 @@ export default function Footer() {
           </div>
         </div>
         <div className="flex flex-col xsmall:flex-row items-center w-full justify-between gap-y-4 text-ui-fg-muted">
-          <Text className="txt-compact-small">
+          <Text className="txt-compact-small text-center xsmall:text-left">
             © {new Date().getFullYear()} Mercur. All rights reserved.
           </Text>
-          <div className="flex items-center gap-x-4">
+          <div className="flex items-center gap-x-4 justify-center xsmall:justify-end">
             <LocalizedClientLink
               href="#"
               className="hover:text-ui-fg-base"
