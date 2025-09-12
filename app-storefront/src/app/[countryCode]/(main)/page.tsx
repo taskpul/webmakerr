@@ -56,22 +56,24 @@ export default async function Home(props: {
     }
   })(document,"script");`}
       </Script>
-      <Hero />
-      <AppointmentScheduling />
-      <SalesTeam />
-      <SalesWorkflow />
-      <ClientExperience />
-      <MoreFeatures />
-      <CommerceExperience />
-      <CommerceModules />
-      <div className="py-12">
-        <ul className="flex flex-col gap-x-6">
-          <FeaturedProducts collections={collections} region={region} />
-        </ul>
+      <div className="bg-[#f4f4f4]">
+        <Hero />
+        <AppointmentScheduling />
+        <SalesTeam />
+        <SalesWorkflow />
+        <ClientExperience />
+        <MoreFeatures />
+        <CommerceExperience />
+        <CommerceModules />
+        <div className="py-12">
+          <ul className="flex flex-col gap-x-6">
+            <FeaturedProducts collections={collections} region={region} />
+          </ul>
+        </div>
+        <Pricing />
+        <Faq />
+        <DemoCta />
       </div>
-      <Pricing />
-      <Faq />
-      <DemoCta />
     </>
   )
 }
