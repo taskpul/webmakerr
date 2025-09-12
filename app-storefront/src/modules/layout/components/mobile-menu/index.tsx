@@ -82,6 +82,14 @@ const MobileMenu = ({
                 <SolutionsMenu regions={regions} close={() => setOpen(false)} />
               )}
               <LocalizedClientLink
+                href="/pricing"
+                onClick={() => setOpen(false)}
+                className="block py-4"
+                data-testid="mobile-pricing-link"
+              >
+                Pricing
+              </LocalizedClientLink>
+              <LocalizedClientLink
                 href="/developer"
                 onClick={() => setOpen(false)}
                 className="block py-4"

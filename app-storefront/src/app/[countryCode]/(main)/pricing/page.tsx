@@ -180,6 +180,22 @@ export const metadata: Metadata = {
 const PricingPage = () => {
   return (
     <div className="content-container py-16">
+      <div className="mb-16 flex flex-col items-center gap-4 text-center">
+        <span className="w-fit rounded-full bg-ui-bg-base px-3 py-1 text-small-regular text-ui-fg-subtle">
+          Pricing
+        </span>
+        <Heading
+          level="h1"
+          className="text-3xl font-bold md:text-4xl"
+        >
+          Simple pricing based on your needs
+        </Heading>
+        <Text className="max-w-2xl text-base text-ui-fg-subtle">
+          You can use Cal.com for your team or organization or use our use Cal.com
+          for building a platform such as a marketplace where users are scheduling
+          other users.
+        </Text>
+      </div>
       <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
         {plans.map((plan) => (
           <div

@@ -37,6 +37,13 @@ export default async function Nav() {
               <SideMenu regions={regions} />
               <LocalizedClientLink
                 className="hover:text-ui-fg-base"
+                href="/pricing"
+                data-testid="nav-pricing-link"
+              >
+                Pricing
+              </LocalizedClientLink>
+              <LocalizedClientLink
+                className="hover:text-ui-fg-base"
                 href="/developer"
                 data-testid="nav-developer-link"
               >
