@@ -28,22 +28,22 @@ const features = [
 
 const MoreFeatures = () => {
   return (
-    <div className="border-b border-ui-border-base bg-ui-bg-subtle">
+    <section className="border-b border-ui-border-base bg-ui-bg-subtle">
       <div className="content-container flex flex-col items-center py-12">
-        <Heading level="h2" className="text-2xl font-medium text-center">
+        <Heading level="h2" className="text-center text-2xl font-medium">
           ...and so much more!
         </Heading>
-        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4">
+        <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-4">
           {features.map(({ icon: Icon, title, description, highlight }) => (
             <div
               key={title}
-              className={`flex flex-col gap-4 rounded-lg border border-ui-border-base p-6 ${
+              className={`flex flex-col gap-4 rounded-lg border border-ui-border-base p-8 ${
                 highlight
                   ? "items-start bg-ui-bg-subtle text-left"
                   : "items-center bg-ui-bg-base text-center"
               }`}
             >
-              <div className="flex h-12 w-12 items-center justify-center rounded-md border border-ui-border-base bg-ui-bg-base">
+              <div className="flex h-14 w-14 items-center justify-center rounded-md border border-ui-border-base bg-ui-bg-base">
                 <Icon className="h-6 w-6 text-ui-fg-muted" />
               </div>
               <Heading level="h4" className="text-base font-medium">
@@ -58,7 +58,7 @@ const MoreFeatures = () => {
           ))}
         </div>
       </div>
-    </div>
+    </section>
   )
 }
 
