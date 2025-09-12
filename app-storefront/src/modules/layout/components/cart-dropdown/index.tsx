@@ -6,6 +6,7 @@ import {
   PopoverPanel,
   Transition,
 } from "@headlessui/react"
+import { ShoppingCart } from "@medusajs/icons"
 import { convertToLocale } from "@lib/util/money"
 import { HttpTypes } from "@medusajs/types"
 import { Button } from "@medusajs/ui"
@@ -82,10 +83,18 @@ const CartDropdown = ({
       <Popover className="relative h-full">
         <PopoverButton className="h-full">
           <LocalizedClientLink
-            className="hover:text-ui-fg-base whitespace-nowrap"
+            className="relative hover:text-ui-fg-base flex items-center"
             href="/cart"
             data-testid="nav-cart-link"
-          >{`Cart (${totalItems})`}</LocalizedClientLink>
+            aria-label="Cart"
+          >
+            <ShoppingCart className="w-6 h-6" />
+            {totalItems > 0 && (
+              <span className="absolute -top-1 -right-1 flex h-4 min-w-[16px] items-center justify-center rounded-full bg-ui-bg-interactive px-1 text-[10px] leading-none text-ui-fg-on-color">
+                {totalItems}
+              </span>
+            )}
+          </LocalizedClientLink>
         </PopoverButton>
         <Transition
           show={cartDropdownOpen}
