@@ -1,7 +1,20 @@
 "use client"
 
 import { Popover, PopoverPanel, Transition } from "@headlessui/react"
-import { ArrowRightMini, XMark } from "@medusajs/icons"
+import {
+  AcademicCap,
+  Buildings,
+  ChartBar,
+  CommandLine,
+  CurrencyDollar,
+  DocumentText,
+  Heart,
+  Lifebuoy,
+  Phone,
+  User,
+  UserGroup,
+  ArrowRightMini,
+} from "@medusajs/icons"
 import { Text, clx, useToggleState } from "@medusajs/ui"
 import { Fragment } from "react"
 
@@ -15,6 +28,40 @@ const SideMenuItems = {
   Account: "/account",
   Cart: "/cart",
 }
+
+const teamSizeItems = [
+  {
+    title: "For Individuals",
+    description: "Personal scheduling made simple",
+    icon: User,
+  },
+  {
+    title: "For Teams",
+    description: "Collaborative scheduling for groups",
+    icon: UserGroup,
+  },
+  {
+    title: "For Enterprises",
+    description: "Enterprise-level scheduling solutions",
+    icon: Buildings,
+  },
+  {
+    title: "For Developers",
+    description: "Powerful features and integrations",
+    icon: CommandLine,
+  },
+]
+
+const useCaseItems = [
+  { title: "Recruiting", icon: UserGroup },
+  { title: "Sales", icon: CurrencyDollar },
+  { title: "HR", icon: DocumentText },
+  { title: "Education", icon: AcademicCap },
+  { title: "Support", icon: Lifebuoy },
+  { title: "Healthcare", icon: Heart },
+  { title: "Telehealth", icon: Phone },
+  { title: "Marketing", icon: ChartBar },
+]
 
 const SideMenu = ({ regions }: { regions: HttpTypes.StoreRegion[] | null }) => {
   const toggleState = useToggleState()
@@ -30,7 +77,7 @@ const SideMenu = ({ regions }: { regions: HttpTypes.StoreRegion[] | null }) => {
                   data-testid="nav-menu-button"
                   className="relative h-full flex items-center transition-all ease-out duration-200 focus:outline-none hover:text-ui-fg-base"
                 >
-                  Menu
+                  Solutions
                 </Popover.Button>
               </div>
 
@@ -39,40 +86,89 @@ const SideMenu = ({ regions }: { regions: HttpTypes.StoreRegion[] | null }) => {
                 as={Fragment}
                 enter="transition ease-out duration-150"
                 enterFrom="opacity-0"
-                enterTo="opacity-100 backdrop-blur-2xl"
+                enterTo="opacity-100"
                 leave="transition ease-in duration-150"
-                leaveFrom="opacity-100 backdrop-blur-2xl"
+                leaveFrom="opacity-100"
                 leaveTo="opacity-0"
               >
-                <PopoverPanel className="flex flex-col absolute w-full pr-4 sm:pr-0 sm:w-1/3 2xl:w-1/4 sm:min-w-min h-[calc(100vh-1rem)] z-30 inset-x-0 text-sm text-ui-fg-on-color m-2 backdrop-blur-2xl">
+                <PopoverPanel className="absolute left-0 top-full z-30 w-screen max-w-3xl text-ui-fg-base mt-2 px-2">
                   <div
                     data-testid="nav-menu-popup"
-                    className="flex flex-col h-full bg-[rgba(3,7,18,0.5)] rounded-rounded justify-between p-6"
+                    className="bg-white rounded-rounded shadow-md border border-ui-border-base p-6 flex flex-col gap-y-8"
                   >
-                    <div className="flex justify-end" id="xmark">
-                      <button data-testid="close-menu-button" onClick={close}>
-                        <XMark />
-                      </button>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                      <div className="md:col-span-1">
+                        <Text className="txt-compact-medium mb-4">
+                          By team size
+                        </Text>
+                        <ul className="flex flex-col gap-4">
+                          {teamSizeItems.map((item) => {
+                            const Icon = item.icon
+                            return (
+                              <li key={item.title}>
+                                <a
+                                  href="#"
+                                  className="flex items-start gap-4"
+                                  onClick={close}
+                                >
+                                  <span className="flex h-12 w-12 items-center justify-center rounded-md border border-dashed border-ui-border-base">
+                                    <Icon />
+                                  </span>
+                                  <span className="flex flex-col">
+                                    <Text className="font-medium">
+                                      {item.title}
+                                    </Text>
+                                    <Text className="text-ui-fg-subtle">
+                                      {item.description}
+                                    </Text>
+                                  </span>
+                                </a>
+                              </li>
+                            )
+                          })}
+                        </ul>
+                      </div>
+                      <div className="md:col-span-2">
+                        <Text className="txt-compact-medium mb-4">
+                          By use case
+                        </Text>
+                        <div className="grid grid-cols-2 gap-4">
+                          {useCaseItems.map((item) => {
+                            const Icon = item.icon
+                            return (
+                              <a
+                                key={item.title}
+                                href="#"
+                                className="flex items-center gap-4 p-2 rounded-md hover:bg-ui-bg-subtle"
+                                onClick={close}
+                              >
+                                <span className="flex h-12 w-12 items-center justify-center rounded-md border border-dashed border-ui-border-base">
+                                  <Icon />
+                                </span>
+                                <Text className="font-medium">{item.title}</Text>
+                              </a>
+                            )
+                          })}
+                        </div>
+                      </div>
                     </div>
-                    <ul className="flex flex-col gap-6 items-start justify-start">
-                      {Object.entries(SideMenuItems).map(([name, href]) => {
-                        return (
+                    <div className="flex flex-col gap-y-6 border-t border-ui-border-base pt-6">
+                      <ul className="flex flex-col sm:flex-row gap-4">
+                        {Object.entries(SideMenuItems).map(([name, href]) => (
                           <li key={name}>
                             <LocalizedClientLink
                               href={href}
-                              className="text-3xl leading-10 hover:text-ui-fg-disabled"
+                              className="hover:text-ui-fg-disabled"
                               onClick={close}
                               data-testid={`${name.toLowerCase()}-link`}
                             >
                               {name}
                             </LocalizedClientLink>
                           </li>
-                        )
-                      })}
-                    </ul>
-                    <div className="flex flex-col gap-y-6">
+                        ))}
+                      </ul>
                       <div
-                        className="flex justify-between"
+                        className="flex justify-between items-center"
                         onMouseEnter={toggleState.open}
                         onMouseLeave={toggleState.close}
                       >
@@ -89,7 +185,7 @@ const SideMenu = ({ regions }: { regions: HttpTypes.StoreRegion[] | null }) => {
                           )}
                         />
                       </div>
-                      <Text className="flex justify-between txt-compact-small">
+                      <Text className="txt-compact-small">
                         © {new Date().getFullYear()} Medusa Store. All rights
                         reserved.
                       </Text>
