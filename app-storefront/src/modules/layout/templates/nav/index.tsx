@@ -1,4 +1,5 @@
 import { Suspense } from "react"
+import Image from "next/image"
 
 import { listRegions } from "@lib/data/regions"
 import { StoreRegion } from "@medusajs/types"
@@ -23,10 +24,15 @@ export default async function Nav() {
           <div className="flex items-center h-full">
             <LocalizedClientLink
               href="/"
-              className="txt-compact-xlarge-plus hover:text-ui-fg-base uppercase"
+              className="hover:text-ui-fg-base"
               data-testid="nav-store-link"
             >
-              Medusa Store
+              <Image
+                src="/Logo-Colour.svg"
+                alt="Medusa Store logo"
+                width={138}
+                height={39}
+              />
             </LocalizedClientLink>
           </div>
 
