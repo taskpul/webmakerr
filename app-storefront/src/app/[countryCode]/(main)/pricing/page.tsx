@@ -1,5 +1,5 @@
 import { Metadata } from "next"
-import { Badge, Button, Heading, Table, Text } from "@medusajs/ui"
+import { Badge, Button, Heading, Table, Text, clx } from "@medusajs/ui"
 import { CheckMini, CheckCircleSolid, PlusMini, MinusMini } from "@medusajs/icons"
 import * as Accordion from "@radix-ui/react-accordion"
 
@@ -202,13 +202,25 @@ const PricingPage = () => {
                 ))}
               </div>
             </div>
-            <Text className="mt-2 text-ui-fg-subtle">{plan.description}</Text>
+            <Text
+              className={clx(
+                "mt-2",
+                plan.dark ? "text-ui-fg-on-color" : "text-ui-fg-subtle"
+              )}
+            >
+              {plan.description}
+            </Text>
             <div className="mt-6">
               <Text className="text-2xl font-semibold">
                 {plan.price === "Custom" ? plan.price : `Starting at ${plan.price}`}
               </Text>
               {plan.priceNote && (
-                <Text className="text-small-regular text-ui-fg-subtle">
+                <Text
+                  className={clx(
+                    "text-small-regular",
+                    plan.dark ? "text-ui-fg-on-color" : "text-ui-fg-subtle"
+                  )}
+                >
                   {plan.priceNote}
                 </Text>
               )}
@@ -216,15 +228,27 @@ const PricingPage = () => {
             <div className="mt-6 flex items-center gap-3">
               <Button
                 variant="secondary"
-                className={plan.dark ? "border-grey-0 text-grey-0" : ""}
+                className={clx(
+                  plan.dark &&
+                    "border-grey-0 text-grey-0 bg-transparent hover:bg-transparent"
+                )}
               >
                 Talk to an Expert
               </Button>
-              <Button className={plan.dark ? "bg-grey-0 text-grey-90 hover:bg-grey-0" : ""}>
+              <Button
+                className={clx(
+                  plan.dark && "bg-grey-0 text-grey-90 hover:bg-grey-0"
+                )}
+              >
                 Start building
               </Button>
             </div>
-            <ul className="mt-6 flex-1 space-y-2 text-ui-fg-subtle">
+            <ul
+              className={clx(
+                "mt-6 flex-1 space-y-2",
+                plan.dark ? "text-ui-fg-on-color" : "text-ui-fg-subtle"
+              )}
+            >
               {plan.features.map((feature) => (
                 <li key={feature} className="flex items-start gap-3">
                   <CheckMini className="h-5 w-5 text-ui-fg-interactive" />
@@ -232,7 +256,12 @@ const PricingPage = () => {
                 </li>
               ))}
             </ul>
-            <Text className="mt-6 text-small-regular text-ui-fg-subtle">
+            <Text
+              className={clx(
+                "mt-6 text-small-regular",
+                plan.dark ? "text-ui-fg-on-color" : "text-ui-fg-subtle"
+              )}
+            >
               {plan.addons}
             </Text>
           </div>
