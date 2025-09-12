@@ -6,6 +6,7 @@ import Hero from "@modules/home/components/hero"
 import Features from "@modules/home/components/features"
 import AppointmentScheduling from "@modules/home/components/appointment-scheduling"
 import SalesTeam from "@modules/home/components/sales-team"
+import SalesWorkflow from "@modules/home/components/sales-workflow"
 import CommerceExperience from "@modules/home/components/commerce-experience"
 import Global from "@modules/home/components/global"
 import CaseStudy from "@modules/home/components/case-study"
@@ -61,6 +62,7 @@ export default async function Home(props: {
       <Features />
       <AppointmentScheduling />
       <SalesTeam />
+      <SalesWorkflow />
       <CommerceExperience />
       <Global />
       <Guide />
