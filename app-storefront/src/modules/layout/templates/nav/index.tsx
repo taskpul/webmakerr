@@ -15,13 +15,7 @@ export default async function Nav() {
     <div className="sticky top-0 inset-x-0 z-50 group">
       <header className="relative h-16 mx-auto border-b duration-200 bg-white border-ui-border-base">
         <nav className="container flex-row items-center justify-between w-full h-full text-large-regular text-ui-fg-subtle pt-0">
-          <div className="flex-1 basis-0 h-full flex items-center">
-            <div className="h-full">
-              <SideMenu regions={regions} />
-            </div>
-          </div>
-
-          <div className="flex items-center h-full">
+          <div className="flex items-center h-full flex-1 basis-0">
             <LocalizedClientLink
               href="/"
               className="hover:text-ui-fg-base"
@@ -38,6 +32,14 @@ export default async function Nav() {
 
           <div className="flex items-center gap-x-6 h-full flex-1 basis-0 justify-end">
             <div className="hidden small:flex items-center gap-x-6 h-full">
+              <SideMenu regions={regions} />
+              <LocalizedClientLink
+                className="hover:text-ui-fg-base"
+                href="/developer"
+                data-testid="nav-developer-link"
+              >
+                Developer
+              </LocalizedClientLink>
               <LocalizedClientLink
                 className="hover:text-ui-fg-base"
                 href="/account"
