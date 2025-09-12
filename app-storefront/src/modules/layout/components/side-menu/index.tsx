@@ -22,12 +22,14 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 import CountrySelect from "../country-select"
 import { HttpTypes } from "@medusajs/types"
 
-const SideMenuItems = {
-  Home: "/",
-  Store: "/store",
-  Account: "/account",
-  Cart: "/cart",
-}
+const SideMenuItems: [string, string][] = [
+  ["Solutions", "/solutions"],
+  ["Developer", "/developer"],
+  ["Home", "/"],
+  ["Store", "/store"],
+  ["Account", "/account"],
+  ["Cart", "/cart"],
+]
 
 const teamSizeItems = [
   {
@@ -154,7 +156,7 @@ const SideMenu = ({ regions }: { regions: HttpTypes.StoreRegion[] | null }) => {
                     </div>
                     <div className="flex flex-col gap-y-6 border-t border-ui-border-base pt-6">
                       <ul className="flex flex-col sm:flex-row gap-4">
-                        {Object.entries(SideMenuItems).map(([name, href]) => (
+                        {SideMenuItems.map(([name, href]) => (
                           <li key={name}>
                             <LocalizedClientLink
                               href={href}
