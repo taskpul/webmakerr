@@ -72,7 +72,7 @@ const Pricing = () => {
     <div className="border-b border-ui-border-base bg-ui-bg-base">
       <div className="content-container py-12">
         <div className="flex flex-col items-center text-center">
-          <Heading level="h2" className="text-3xl font-medium">
+          <Heading level="h2" className="text-3xl font-bold leading-10">
             Find a plan to power your apps.
           </Heading>
           <Text className="mt-2 text-ui-fg-subtle">
@@ -85,7 +85,7 @@ const Pricing = () => {
               key={name}
               className="flex flex-col rounded-md border border-ui-border-base p-8"
             >
-              <Heading level="h3" className="text-xl font-medium">
+              <Heading level="h3" className="text-xl font-bold">
                 {name}
               </Heading>
               <Text className="mt-2 text-ui-fg-subtle">{description}</Text>

@@ -41,7 +41,7 @@ const CommerceExperience = () => {
   return (
     <div className="border-b border-ui-border-base bg-ui-bg-base">
       <div className="content-container flex flex-col items-center py-12">
-        <Heading level="h2" className="text-3xl font-medium text-center">
+        <Heading level="h2" className="text-3xl font-bold leading-10 text-center">
           Take full control of your commerce experience
         </Heading>
         <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
@@ -61,7 +61,7 @@ const CommerceExperience = () => {
                   className="h-8 w-8 object-contain"
                 />
               </div>
-              <Heading level="h3" className="text-lg font-medium">
+              <Heading level="h3" className="text-lg font-bold">
                 {title}
               </Heading>
               <Text className="text-base text-ui-fg-subtle">{description}</Text>

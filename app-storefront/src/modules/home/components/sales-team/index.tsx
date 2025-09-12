@@ -10,7 +10,7 @@ const SalesTeam = () => {
         </div>
         <Heading
           level="h2"
-          className="mt-4 max-w-2xl text-center text-3xl font-medium"
+          className="mt-4 max-w-2xl text-center text-3xl font-bold leading-10"
         >
           How Cal.com works for sales teams
         </Heading>
@@ -39,7 +39,7 @@ const SalesTeam = () => {
             </div>
           </div>
           <div className="flex flex-col">
-            <Heading level="h3" className="text-xl font-medium">
+            <Heading level="h3" className="text-xl font-bold">
               Better sales meetings
             </Heading>
             <Text className="mt-4 text-base text-ui-fg-subtle">

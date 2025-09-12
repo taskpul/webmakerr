@@ -50,7 +50,7 @@ const ClientExperience = () => {
           <div className="w-fit rounded-full border border-ui-border-base px-3 py-1">
             <Text className="text-small-regular text-ui-fg-subtle">03</Text>
           </div>
-          <Heading level="h3" className="text-xl font-medium">
+          <Heading level="h3" className="text-xl font-bold">
             Enhanced client experience
           </Heading>
           <Text className="text-base text-ui-fg-subtle">

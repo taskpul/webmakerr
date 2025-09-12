@@ -9,7 +9,7 @@ const DemoCta = () => {
           <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(var(--border-base)_1px,transparent_1px),linear-gradient(90deg,var(--border-base)_1px,transparent_1px)] bg-[length:40px_40px] opacity-40" />
           <Heading
             level="h2"
-            className="mx-auto max-w-4xl text-3xl font-medium"
+            className="mx-auto max-w-4xl text-3xl font-bold leading-10"
           >
             Free up your time. We've got your scheduling covered. Try Cal.com
             now!

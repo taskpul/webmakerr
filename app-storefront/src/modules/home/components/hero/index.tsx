@@ -20,7 +20,7 @@ const Hero = () => {
           </span>
           <Heading
             level="h1"
-            className="text-3xl font-semibold text-ui-fg-base md:text-4xl"
+            className="text-3xl font-bold text-ui-fg-base md:text-4xl"
           >
             The better way to schedule your meetings
           </Heading>
@@ -52,7 +52,7 @@ const Hero = () => {
             <div className="flex items-center gap-4">
               <div className="h-10 w-10 rounded-full bg-grey-20" />
               <div>
-                <Heading level="h3" className="text-base text-ui-fg-base">
+                <Heading level="h3" className="text-base font-bold text-ui-fg-base">
                   Emma Brown
                 </Heading>
                 <Text className="text-small-regular text-ui-fg-subtle">
@@ -62,7 +62,7 @@ const Hero = () => {
             </div>
             <div>
               <div className="flex items-center justify-between">
-                <Heading level="h3" className="text-base text-ui-fg-base">
+                <Heading level="h3" className="text-base font-bold text-ui-fg-base">
                   May 2015
                 </Heading>
                 <div className="flex gap-2 text-ui-fg-muted">

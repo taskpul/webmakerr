@@ -30,7 +30,7 @@ const MoreFeatures = () => {
   return (
     <section className="border-b border-ui-border-base bg-ui-bg-subtle">
       <div className="content-container flex flex-col items-center py-12">
-        <Heading level="h2" className="text-center text-2xl font-medium">
+        <Heading level="h2" className="text-center text-2xl font-bold leading-10">
           ...and so much more!
         </Heading>
         <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-4">

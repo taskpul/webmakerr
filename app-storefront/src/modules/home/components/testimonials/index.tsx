@@ -87,7 +87,7 @@ const Testimonials = () => {
         </div>
         <Heading
           level="h2"
-          className="mt-4 text-center text-3xl font-medium"
+          className="mt-4 text-center text-3xl font-bold leading-10"
         >
           Don't just take our word for it
         </Heading>

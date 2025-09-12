@@ -102,7 +102,7 @@ const CommerceModules = () => {
           <Text className="text-small-regular text-ui-fg-subtle">
             Commerce Modules
           </Text>
-          <Heading level="h2" className="text-2xl font-medium">
+          <Heading level="h2" className="text-2xl font-bold leading-10">
             Modules covering all commerce domains
           </Heading>
         </div>
@@ -113,7 +113,7 @@ const CommerceModules = () => {
             className="grid grid-cols-1 gap-8 md:grid-cols-2"
           >
             <div className="flex flex-col gap-4">
-              <Heading level="h3" className="text-xl font-medium">
+              <Heading level="h3" className="text-xl font-bold">
                 {section.title}
               </Heading>
               <Text className="text-base text-ui-fg-subtle">

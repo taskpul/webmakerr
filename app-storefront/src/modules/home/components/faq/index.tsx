@@ -28,7 +28,10 @@ const Faq = () => {
       <div className="content-container grid grid-cols-1 gap-8 py-12 md:grid-cols-2">
         <div className="flex flex-col gap-6">
           <Text className="text-small-regular text-ui-fg-subtle">FAQ</Text>
-          <Heading level="h2" className="text-3xl font-medium">
+          <Heading
+            level="h2"
+            className="text-3xl font-bold leading-10"
+          >
             Frequently Asked Questions about our flexible commerce platform
           </Heading>
           <Text className="text-base text-ui-fg-subtle">
