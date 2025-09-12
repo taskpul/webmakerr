@@ -36,6 +36,7 @@ const Testimonials = () => {
   const slideRef = useRef<HTMLDivElement>(null)
   const [containerWidth, setContainerWidth] = useState(0)
   const [slideWidth, setSlideWidth] = useState(0)
+  const [slideHeight, setSlideHeight] = useState(0)
 
   useEffect(() => {
     const resize = () => {
@@ -44,6 +45,7 @@ const Testimonials = () => {
       }
       if (slideRef.current) {
         setSlideWidth(slideRef.current.offsetWidth)
+        setSlideHeight(slideRef.current.offsetHeight)
       }
     }
 
@@ -61,8 +63,21 @@ const Testimonials = () => {
     return () => clearInterval(timer)
   }, [])
 
-  const translate =
-    containerWidth / 2 - slideWidth / 2 - index * (slideWidth + GAP)
+  const baseTranslate = containerWidth / 2 - slideWidth / 2
+
+  const getTranslate = (i: number) => {
+    const position = (i - index + testimonials.length) % testimonials.length
+    if (position === 0) {
+      return baseTranslate
+    }
+    if (position === 1) {
+      return baseTranslate + slideWidth + GAP
+    }
+    if (position === testimonials.length - 1) {
+      return baseTranslate - (slideWidth + GAP)
+    }
+    return baseTranslate
+  }
 
   return (
     <div className="border-b border-ui-border-base bg-ui-bg-base">
@@ -82,18 +97,20 @@ const Testimonials = () => {
         <div
           ref={containerRef}
           className="relative mt-8 w-full max-w-5xl overflow-hidden"
+          style={{ height: slideHeight }}
         >
           <div className="pointer-events-none absolute left-0 top-0 h-full w-12 bg-gradient-to-r from-ui-bg-base to-transparent" />
           <div className="pointer-events-none absolute right-0 top-0 h-full w-12 bg-gradient-to-l from-ui-bg-base to-transparent" />
-          <div
-            className="flex gap-x-8 transition-transform duration-500"
-            style={{ transform: `translateX(${translate}px)` }}
-          >
-            {testimonials.map((t, i) => (
+          {testimonials.map((t, i) => {
+            const translate = getTranslate(i)
+            return (
               <div
                 key={i}
                 ref={i === 0 ? slideRef : undefined}
-                className="w-[360px] flex-shrink-0"
+                className={`absolute top-0 w-[360px] transition-transform duration-500 ${
+                  i === index ? 'z-10' : 'z-0'
+                }`}
+                style={{ transform: `translateX(${translate}px)` }}
               >
                 <div
                   className={`h-full rounded-lg border border-ui-border-base p-6 transition-all ${
@@ -116,8 +133,8 @@ const Testimonials = () => {
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
+            )
+          })}
         </div>
       </div>
     </div>
