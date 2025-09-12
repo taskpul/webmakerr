@@ -7,6 +7,7 @@ import AppointmentScheduling from "@modules/home/components/appointment-scheduli
 import SalesTeam from "@modules/home/components/sales-team"
 import SalesWorkflow from "@modules/home/components/sales-workflow"
 import ClientExperience from "@modules/home/components/client-experience"
+import MoreFeatures from "@modules/home/components/more-features"
 import CommerceExperience from "@modules/home/components/commerce-experience"
 import CommerceModules from "@modules/home/components/commerce-modules"
 import Faq from "@modules/home/components/faq"
@@ -60,6 +61,7 @@ export default async function Home(props: {
       <SalesTeam />
       <SalesWorkflow />
       <ClientExperience />
+      <MoreFeatures />
       <CommerceExperience />
       <CommerceModules />
       <div className="py-12">
