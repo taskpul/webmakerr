@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Heading, Text } from '@medusajs/ui'
 import { User } from '@medusajs/icons'
 
@@ -28,8 +28,30 @@ const testimonials = [
   },
 ]
 
+const GAP = 32
+
 const Testimonials = () => {
   const [index, setIndex] = useState(0)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const slideRef = useRef<HTMLDivElement>(null)
+  const [containerWidth, setContainerWidth] = useState(0)
+  const [slideWidth, setSlideWidth] = useState(0)
+
+  useEffect(() => {
+    const resize = () => {
+      if (containerRef.current) {
+        setContainerWidth(containerRef.current.offsetWidth)
+      }
+      if (slideRef.current) {
+        setSlideWidth(slideRef.current.offsetWidth)
+      }
+    }
+
+    resize()
+
+    window.addEventListener('resize', resize)
+    return () => window.removeEventListener('resize', resize)
+  }, [])
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -38,6 +60,9 @@ const Testimonials = () => {
 
     return () => clearInterval(timer)
   }, [])
+
+  const translate =
+    containerWidth / 2 - slideWidth / 2 - index * (slideWidth + GAP)
 
   return (
     <div className="border-b border-ui-border-base bg-ui-bg-base">
@@ -54,14 +79,29 @@ const Testimonials = () => {
         <Text className="mt-6 max-w-2xl text-center text-base text-ui-fg-subtle">
           Our users are our best ambassadors. Discover why we're the top choice for scheduling meetings.
         </Text>
-        <div className="relative mt-8 w-full max-w-3xl overflow-hidden">
+        <div
+          ref={containerRef}
+          className="relative mt-8 w-full max-w-5xl overflow-hidden"
+        >
+          <div className="pointer-events-none absolute left-0 top-0 h-full w-12 bg-gradient-to-r from-ui-bg-base to-transparent" />
+          <div className="pointer-events-none absolute right-0 top-0 h-full w-12 bg-gradient-to-l from-ui-bg-base to-transparent" />
           <div
-            className="flex transition-transform duration-500"
-            style={{ transform: `translateX(-${index * 100}%)` }}
+            className="flex gap-x-8 transition-transform duration-500"
+            style={{ transform: `translateX(${translate}px)` }}
           >
             {testimonials.map((t, i) => (
-              <div key={i} className="w-full flex-shrink-0 px-4">
-                <div className="rounded-lg border border-ui-border-base bg-ui-bg-subtle p-6 shadow-none">
+              <div
+                key={i}
+                ref={i === 0 ? slideRef : undefined}
+                className="w-[360px] flex-shrink-0"
+              >
+                <div
+                  className={`h-full rounded-lg border border-ui-border-base p-6 transition-all ${
+                    i === index
+                      ? 'bg-ui-bg-base shadow-md'
+                      : 'bg-ui-bg-subtle opacity-50'
+                  }`}
+                >
                   <Text className="text-base">"{t.quote}"</Text>
                   <div className="mt-4 flex items-center gap-x-3">
                     <div className="flex h-8 w-8 items-center justify-center rounded-full border border-ui-border-base bg-ui-bg-subtle">
