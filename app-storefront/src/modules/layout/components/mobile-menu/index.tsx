@@ -1,16 +1,24 @@
 "use client"
 
 import { Popover, Transition } from "@headlessui/react"
-import { BarsThree } from "@medusajs/icons"
-import { Fragment } from "react"
+import { BarsThree, ArrowRightMini } from "@medusajs/icons"
+import { Fragment, useState } from "react"
 
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
+import SolutionsMenu from "../solutions-menu"
+import { HttpTypes } from "@medusajs/types"
+import { clx } from "@medusajs/ui"
 
-const MobileMenu = () => {
+const MobileMenu = ({
+  regions,
+}: {
+  regions: HttpTypes.StoreRegion[] | null
+}) => {
+  const [showSolutions, setShowSolutions] = useState(false)
   return (
     <div className="h-full flex small:hidden items-center">
       <Popover className="relative h-full">
-        {({ open, close }) => (
+        {({ close }) => (
           <>
             <Popover.Button
               data-testid="mobile-menu-button"
@@ -27,15 +35,23 @@ const MobileMenu = () => {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Popover.Panel className="absolute right-0 top-full z-30 mt-2 w-48 rounded-rounded shadow-md border border-ui-border-base bg-white p-4 flex flex-col gap-y-4 text-ui-fg-base">
-                <LocalizedClientLink
-                  href="/solutions"
-                  onClick={close}
-                  className="hover:text-ui-fg-disabled"
+              <Popover.Panel className="absolute right-0 top-full z-30 mt-2 w-screen max-w-lg rounded-rounded shadow-md border border-ui-border-base bg-white p-4 flex flex-col gap-y-4 text-ui-fg-base">
+                <button
+                  onClick={() => setShowSolutions((prev) => !prev)}
+                  className="flex items-center justify-between hover:text-ui-fg-disabled"
                   data-testid="mobile-solutions-link"
                 >
-                  Solutions
-                </LocalizedClientLink>
+                  <span>Solutions</span>
+                  <ArrowRightMini
+                    className={clx(
+                      "transition-transform duration-150",
+                      showSolutions ? "-rotate-90" : ""
+                    )}
+                  />
+                </button>
+                {showSolutions && (
+                  <SolutionsMenu regions={regions} close={close} />
+                )}
                 <LocalizedClientLink
                   href="/developer"
                   onClick={close}

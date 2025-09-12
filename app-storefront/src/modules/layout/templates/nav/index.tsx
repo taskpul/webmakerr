@@ -64,7 +64,7 @@ export default async function Nav() {
             >
               <CartButton />
             </Suspense>
-            <MobileMenu />
+            <MobileMenu regions={regions} />
             <Button asChild className="whitespace-nowrap">
               <LocalizedClientLink href="/start">Start for Free</LocalizedClientLink>
             </Button>
