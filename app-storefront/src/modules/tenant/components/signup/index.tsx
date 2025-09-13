@@ -4,10 +4,16 @@ import { useActionState } from "react"
 import Input from "@modules/common/components/input"
 import ErrorMessage from "@modules/checkout/components/error-message"
 import { SubmitButton } from "@modules/checkout/components/submit-button"
-import { signup } from "@lib/data/customer"
+import {
+  tenantSignup,
+  type TenantSignupResponse,
+} from "@lib/data/tenant"
 
 const TenantSignup = () => {
-  const [message, formAction] = useActionState(signup, null)
+  const [state, formAction] = useActionState<TenantSignupResponse, FormData>(
+    tenantSignup,
+    { success: null, error: null }
+  )
 
   return (
     <div className="max-w-sm flex flex-col items-center" data-testid="tenant-signup-page">
@@ -21,7 +27,15 @@ const TenantSignup = () => {
           <Input label="Password" name="password" required type="password" autoComplete="new-password" />
           <Input label="Subdomain" name="subdomain" required autoComplete="off" />
         </div>
-        <ErrorMessage error={message} data-testid="tenant-signup-error" />
+        {state.success && (
+          <div
+            className="pt-2 text-green-500 text-small-regular"
+            data-testid="tenant-signup-success"
+          >
+            <span>{state.success}</span>
+          </div>
+        )}
+        <ErrorMessage error={state.error} data-testid="tenant-signup-error" />
         <SubmitButton className="w-full mt-6" data-testid="tenant-signup-button">
           Sign up
         </SubmitButton>
