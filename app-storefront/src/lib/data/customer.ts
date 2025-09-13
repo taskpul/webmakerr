@@ -90,11 +90,14 @@ export async function signup(_currentState: unknown, formData: FormData) {
     if (subdomain) {
       await sdk.client.fetch(`/store/tenants`, {
         method: "POST",
+        headers: {
+          ...headers,
+          "Content-Type": "application/json",
+        },
         body: {
           owner_id: createdCustomer.id,
           subdomain,
         },
-        headers,
       })
     }
 
