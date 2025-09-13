@@ -1,4 +1,5 @@
 import { Metadata } from "next"
+import Script from "next/script"
 
 import { listCartOptions, retrieveCart } from "@lib/data/cart"
 import { retrieveCustomer } from "@lib/data/customer"
@@ -26,6 +27,18 @@ export default async function PageLayout(props: { children: React.ReactNode }) {
 
   return (
     <>
+      <Script id="brevo-widget" strategy="beforeInteractive">
+        {`(function(d, w, c) {
+  w.BrevoConversationsID = '${process.env.NEXT_PUBLIC_BREVO_CONVERSATIONS_ID}';
+  w[c] = w[c] || function() {
+    (w[c].q = w[c].q || []).push(arguments);
+  };
+  var s = d.createElement('script');
+  s.async = true;
+  s.src = 'https://conversations-widget.brevo.com/brevo-conversations.js';
+  if (d.head) d.head.appendChild(s);
+})(document, window, 'BrevoConversations');`}
+      </Script>
       <Nav />
       {customer && cart && (
         <CartMismatchBanner customer={customer} cart={cart} />

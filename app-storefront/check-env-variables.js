@@ -11,6 +11,10 @@ const requiredEnvs = [
     key: "NEXT_PUBLIC_FACEBOOK_PIXEL_ID",
     description: "Facebook Pixel ID used for Meta Pixel tracking",
   },
+  {
+    key: "NEXT_PUBLIC_BREVO_CONVERSATIONS_ID",
+    description: "Brevo Conversations widget ID",
+  },
 ]
 
 function checkEnvVariables() {
