@@ -1,11 +1,13 @@
-import { loadEnv, defineConfig } from '@medusajs/framework/utils'
+import { loadEnv, defineConfig } from "@medusajs/framework/utils";
 
-loadEnv(process.env.NODE_ENV || 'development', process.cwd())
+loadEnv(process.env.NODE_ENV || "development", process.cwd());
 
 const storeCors = [
-  ...(process.env.STORE_CORS ? process.env.STORE_CORS.split(',') : []),
-  process.env.ROOT_DOMAIN ? `.${process.env.ROOT_DOMAIN}` : '',
-].filter(Boolean)
+  ...(process.env.STORE_CORS ? process.env.STORE_CORS.split(",") : []),
+  process.env.ROOT_DOMAIN ? `.${process.env.ROOT_DOMAIN}` : "",
+]
+  .filter(Boolean)
+  .join(",");
 
 module.exports = defineConfig({
   projectConfig: {
@@ -16,14 +18,14 @@ module.exports = defineConfig({
       authCors: process.env.AUTH_CORS!,
       jwtSecret: process.env.JWT_SECRET || "supersecret",
       cookieSecret: process.env.COOKIE_SECRET || "supersecret",
-    }
+    },
   },
   modules: [
     {
-      resolve: "./src/modules/invoice-generator"
+      resolve: "./src/modules/invoice-generator",
     },
     {
-      resolve: "./src/modules/tenant"
+      resolve: "./src/modules/tenant",
     },
   ],
-})
+});
