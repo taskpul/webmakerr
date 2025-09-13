@@ -11,13 +11,31 @@ class TenantService extends MedusaService({
       .replace(/^-+|-+$/g, "")
   }
 
-  async createTenant(ownerId: string, subdomain: string) {
-    const sanitized = this.sanitize(subdomain)
-    const existing = await this.listTenants({ subdomain: sanitized })
-    if (existing.length) {
-      throw new Error("Subdomain already taken")
+  private async generateUniqueSubdomain(ownerId: string): Promise<string> {
+    const baseInfo = ownerId.includes("@") ? ownerId.split("@")[0] : ownerId
+    const base = this.sanitize(baseInfo)
+    let candidate = base
+    let counter = 1
+    while ((await this.listTenants({ subdomain: candidate })).length) {
+      candidate = `${base}-${counter}`
+      counter++
     }
-    return await this.createTenants({ owner_id: ownerId, subdomain: sanitized })
+    return candidate
+  }
+
+  async createTenant(ownerId: string, subdomain?: string) {
+    const target = subdomain
+      ? this.sanitize(subdomain)
+      : await this.generateUniqueSubdomain(ownerId)
+
+    if (subdomain) {
+      const existing = await this.listTenants({ subdomain: target })
+      if (existing.length) {
+        throw new Error("Subdomain already taken")
+      }
+    }
+
+    return await this.createTenants({ owner_id: ownerId, subdomain: target })
   }
 
   async retrieveBySubdomain(subdomain: string) {

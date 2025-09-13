@@ -19,7 +19,6 @@ export async function tenantSignup(
     last_name: formData.get("last_name") as string,
     phone: formData.get("phone") as string,
   }
-  const subdomain = formData.get("subdomain") as string
 
   try {
     const token = await sdk.auth.register("user", "emailpass", {
@@ -39,13 +38,10 @@ export async function tenantSignup(
       last_name: userForm.last_name,
       phone: userForm.phone,
     })
-
-    if (subdomain) {
-      await sdk.client.fetch(`/store/tenants`, {
-        method: "POST",
-        body: { owner_id: ownerId, subdomain },
-      })
-    }
+    await sdk.client.fetch(`/store/tenants`, {
+      method: "POST",
+      body: { owner_id: ownerId },
+    })
 
     const loginToken = await sdk.auth.login("user", "emailpass", {
       email: userForm.email,
