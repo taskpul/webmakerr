@@ -24,22 +24,26 @@ export async function tenantSignup(
   const roles = ["tenant", "admin"]
 
   try {
-    await sdk.auth.register("user", "emailpass", {
+    const token = await sdk.auth.register("user", "emailpass", {
       email: userForm.email,
       password,
       roles,
     })
 
-    const { user } = await sdk.admin.user.create({
-      email: userForm.email,
+    const payload = JSON.parse(
+      Buffer.from((token as string).split(".")[1], "base64").toString()
+    ) as { actor_id?: string; entity_id?: string; sub?: string }
+
+    const ownerId = payload.actor_id || payload.entity_id || payload.sub || ""
+
+    await sdk.admin.user.update(ownerId, {
       first_name: userForm.first_name,
       last_name: userForm.last_name,
       phone: userForm.phone,
     })
-
     await sdk.client.fetch(`/store/tenants`, {
       method: "POST",
-      body: { owner_id: user.id },
+      body: { owner_id: ownerId },
     })
 
     const loginToken = await sdk.auth.login("user", "emailpass", {
