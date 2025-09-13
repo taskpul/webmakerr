@@ -25,7 +25,6 @@ const TenantSignup = () => {
           <Input label="Email" name="email" required type="email" autoComplete="email" />
           <Input label="Phone" name="phone" type="tel" autoComplete="tel" />
           <Input label="Password" name="password" required type="password" autoComplete="new-password" />
-          <Input label="Subdomain" name="subdomain" required autoComplete="off" />
         </div>
         {state.success && (
           <div

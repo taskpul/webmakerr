@@ -70,7 +70,6 @@ export async function signup(
     last_name: formData.get("last_name") as string,
     phone: formData.get("phone") as string,
   }
-  const subdomain = formData.get("subdomain") as string
 
   try {
     const token = await sdk.auth.register("customer", "emailpass", {
@@ -90,19 +89,16 @@ export async function signup(
       headers
     )
 
-    if (subdomain) {
-      await sdk.client.fetch(`/store/tenants`, {
-        method: "POST",
-        headers: {
-          ...headers,
-          "Content-Type": "application/json",
-        },
-        body: {
-          owner_id: createdCustomer.id,
-          subdomain,
-        },
-      })
-    }
+    await sdk.client.fetch(`/store/tenants`, {
+      method: "POST",
+      headers: {
+        ...headers,
+        "Content-Type": "application/json",
+      },
+      body: {
+        owner_id: createdCustomer.id,
+      },
+    })
 
     const loginToken = await sdk.auth.login("customer", "emailpass", {
       email: customerForm.email,

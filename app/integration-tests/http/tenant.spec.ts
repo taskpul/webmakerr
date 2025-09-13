@@ -11,12 +11,23 @@ medusaIntegrationTestRunner({
       it("creates and retrieves tenant", async () => {
         const response = await api.post("/store/tenants", {
           owner_id: "owner1",
-          subdomain: "test-shop",
         })
         expect(response.status).toEqual(200)
         const tenantService = container.resolve(TENANT_MODULE)
-        const tenant = await tenantService.retrieveBySubdomain("test-shop")
+        const tenant = await tenantService.retrieveBySubdomain(
+          response.data.tenant.subdomain
+        )
         expect(tenant).toBeTruthy()
+      })
+
+      it("generates unique subdomains when none provided", async () => {
+        const first = await api.post("/store/tenants", { owner_id: "owner2" })
+        const second = await api.post("/store/tenants", { owner_id: "owner2" })
+        expect(first.status).toEqual(200)
+        expect(second.status).toEqual(200)
+        expect(first.data.tenant.subdomain).not.toEqual(
+          second.data.tenant.subdomain
+        )
       })
     })
   },
