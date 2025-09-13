@@ -29,6 +29,22 @@ medusaIntegrationTestRunner({
           second.data.tenant.subdomain
         )
       })
+
+      it("lists, updates, and deletes tenants", async () => {
+        const tenantService = container.resolve(TENANT_MODULE)
+        const tenant = await tenantService.createTenant("owner3")
+
+        const tenants = await tenantService.listTenants()
+        expect(tenants.some((t) => t.id === tenant.id)).toBe(true)
+
+        await tenantService.updateTenant(tenant.id, { subdomain: "updated" })
+        const [updated] = await tenantService.listTenants({ id: tenant.id })
+        expect(updated.subdomain).toEqual("updated")
+
+        await tenantService.deleteTenant(tenant.id)
+        const after = await tenantService.listTenants({ id: tenant.id })
+        expect(after.length).toEqual(0)
+      })
     })
   },
 })
