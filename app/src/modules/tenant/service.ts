@@ -4,6 +4,21 @@ import Tenant from "./models/tenant"
 class TenantService extends MedusaService({
   Tenant,
 }) {
+  async listTenants(selector: Record<string, any> = {}) {
+    return await super.listTenants(selector)
+  }
+
+  async updateTenant(
+    id: string,
+    data: Partial<{ subdomain?: string; owner_id?: string; metadata?: Record<string, any> }>
+  ) {
+    const [tenant] = await super.updateTenants({ id, ...data })
+    return tenant
+  }
+
+  async deleteTenant(id: string) {
+    await super.deleteTenants({ id })
+  }
   private sanitize(sub: string) {
     return sub
       .toLowerCase()
