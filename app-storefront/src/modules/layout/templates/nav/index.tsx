@@ -58,6 +58,13 @@ export default async function Nav() {
               </LocalizedClientLink>
               <LocalizedClientLink
                 className="hover:text-ui-fg-base"
+                href="/tenant-login"
+                data-testid="nav-tenant-login-link"
+              >
+                Tenant Login
+              </LocalizedClientLink>
+              <LocalizedClientLink
+                className="hover:text-ui-fg-base"
                 href="/account"
                 data-testid="nav-account-link"
               >

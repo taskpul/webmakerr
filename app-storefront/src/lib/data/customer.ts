@@ -142,6 +142,40 @@ export async function login(_currentState: unknown, formData: FormData) {
   }
 }
 
+export async function requestPasswordReset(
+  _currentState: unknown,
+  formData: FormData
+) {
+  const email = formData.get("email") as string
+
+  try {
+    await sdk.auth.resetPassword("customer", "emailpass", {
+      identifier: email,
+    })
+  } catch (error: any) {
+    return error.toString()
+  }
+}
+
+export async function resetPassword(
+  _currentState: unknown,
+  formData: FormData
+) {
+  const token = formData.get("token") as string
+  const password = formData.get("password") as string
+
+  try {
+    await sdk.auth.updateProvider(
+      "customer",
+      "emailpass",
+      { password },
+      token
+    )
+  } catch (error: any) {
+    return error.toString()
+  }
+}
+
 export async function signout(countryCode: string) {
   await sdk.auth.logout()
 
