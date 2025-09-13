@@ -19,12 +19,17 @@ export async function tenantSignup(
     last_name: formData.get("last_name") as string,
     phone: formData.get("phone") as string,
   }
+  const role = (formData.get("role") as string | null)?.toLowerCase()
+  const roles = ["tenant"]
+  if (role === "admin") {
+    roles.push("admin")
+  }
 
   try {
     const token = await sdk.auth.register("user", "emailpass", {
       email: userForm.email,
       password,
-      roles: ["tenant"],
+      roles,
     })
 
     const payload = JSON.parse(

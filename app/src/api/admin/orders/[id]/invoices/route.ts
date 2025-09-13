@@ -5,6 +5,10 @@ export async function GET(
   req: MedusaRequest,
   res: MedusaResponse
 ): Promise<void> {
+  if (!req.actor?.roles?.includes("admin")) {
+    res.status(403).json({ message: "Forbidden" })
+    return
+  }
   const { id } = req.params
 
   const { result: {

@@ -6,6 +6,10 @@ export async function GET(
   req: MedusaRequest,
   res: MedusaResponse
 ) {
+  if (!req.actor?.roles?.includes("admin")) {
+    res.status(403).json({ message: "Forbidden" })
+    return
+  }
   const query = req.scope.resolve("query")
 
   const { data: [invoiceConfig] } = await query.graph({
@@ -33,6 +37,10 @@ export async function POST(
   req: MedusaRequest<PostInvoiceConfig>,
   res: MedusaResponse
 ) {
+  if (!req.actor?.roles?.includes("admin")) {
+    res.status(403).json({ message: "Forbidden" })
+    return
+  }
   const { result: { invoice_config } } = await updateInvoiceConfigWorkflow(req.scope)
     .run({
       input: req.validatedBody,
