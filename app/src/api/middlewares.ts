@@ -1,7 +1,15 @@
-import { defineMiddlewares, validateAndTransformBody, authenticate } from "@medusajs/framework/http"
+import {
+  defineMiddlewares,
+  validateAndTransformBody,
+  authenticate,
+} from "@medusajs/framework/http"
 import { PostInvoiceConfgSchema } from "./admin/invoice-config/route"
-import { CreateTenantSchema } from "./store/tenants/route"
-import { UpdateTenantSchema, DeleteTenantSchema } from "./admin/tenants/route"
+import {
+  CreateTenantSchema,
+  UpdateTenantSchema,
+  DeleteTenantSchema,
+} from "./admin/tenants/route"
+import { CreateAdminUserSchema } from "./admin/users/route"
 
 export default defineMiddlewares({
   routes: [
@@ -13,10 +21,26 @@ export default defineMiddlewares({
       ]
     },
     {
+      matcher: "/admin/users",
+      methods: ["POST"],
+      middlewares: [
+        authenticate("user", ["session", "bearer", "api-key"]),
+        validateAndTransformBody(CreateAdminUserSchema)
+      ]
+    },
+    {
       matcher: "/admin/tenants",
       methods: ["GET"],
       middlewares: [
         authenticate("user", ["session", "bearer", "api-key"]),
+      ]
+    },
+    {
+      matcher: "/admin/tenants",
+      methods: ["POST"],
+      middlewares: [
+        authenticate("user", ["session", "bearer", "api-key"]),
+        validateAndTransformBody(CreateTenantSchema)
       ]
     },
     {
@@ -33,13 +57,6 @@ export default defineMiddlewares({
       middlewares: [
         authenticate("user", ["session", "bearer", "api-key"]),
         validateAndTransformBody(DeleteTenantSchema)
-      ]
-    },
-    {
-      matcher: "/store/tenants",
-      methods: ["POST"],
-      middlewares: [
-        validateAndTransformBody(CreateTenantSchema)
       ]
     }
   ]

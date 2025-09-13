@@ -83,22 +83,11 @@ export async function signup(
       ...(await getAuthHeaders()),
     }
 
-    const { customer: createdCustomer } = await sdk.store.customer.create(
+    await sdk.store.customer.create(
       customerForm,
       {},
       headers
     )
-
-    await sdk.client.fetch(`/store/tenants`, {
-      method: "POST",
-      headers: {
-        ...headers,
-        "Content-Type": "application/json",
-      },
-      body: {
-        owner_id: createdCustomer.id,
-      },
-    })
 
     const loginToken = await sdk.auth.login("customer", "emailpass", {
       email: customerForm.email,

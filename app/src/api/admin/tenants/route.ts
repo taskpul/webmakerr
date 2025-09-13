@@ -9,6 +9,23 @@ export async function GET(req: MedusaRequest, res: MedusaResponse) {
   res.json({ tenants })
 }
 
+export const CreateTenantSchema = z.object({
+  owner_id: z.string(),
+  subdomain: z.string().optional(),
+})
+
+type CreateTenantBody = z.infer<typeof CreateTenantSchema>
+
+export async function POST(
+  req: MedusaRequest<CreateTenantBody>,
+  res: MedusaResponse
+) {
+  const tenantService: TenantService = req.scope.resolve(TENANT_MODULE)
+  const { owner_id } = req.validatedBody
+  const tenant = await tenantService.createTenant(owner_id)
+  res.json({ tenant })
+}
+
 export const UpdateTenantSchema = z.object({
   id: z.string(),
   subdomain: z.string().optional(),
