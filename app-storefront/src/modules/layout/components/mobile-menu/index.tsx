@@ -98,22 +98,6 @@ const MobileMenu = ({
                 Developer
               </LocalizedClientLink>
               <LocalizedClientLink
-                href="/tenant-signup"
-                onClick={() => setOpen(false)}
-                className="block py-4"
-                data-testid="mobile-tenant-signup-link"
-              >
-                Tenant Signup
-              </LocalizedClientLink>
-              <LocalizedClientLink
-                href="/tenant-login"
-                onClick={() => setOpen(false)}
-                className="block py-4"
-                data-testid="mobile-tenant-login-link"
-              >
-                Tenant Login
-              </LocalizedClientLink>
-              <LocalizedClientLink
                 href="/account"
                 onClick={() => setOpen(false)}
                 className="block py-4"
