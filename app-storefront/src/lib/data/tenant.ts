@@ -1,7 +1,9 @@
 "use server"
 
 import { sdk } from "@lib/config"
-import { setAuthToken } from "./cookies"
+import { revalidateTag } from "next/cache"
+import { getCacheTag, setAuthToken } from "./cookies"
+import { transferCart } from "./customer"
 
 export type TenantSignupResponse = {
   success: string | null
@@ -54,6 +56,32 @@ export async function tenantSignup(
     return { success: "Account created successfully", error: null }
   } catch (error: any) {
     return { success: null, error: error.toString() }
+  }
+}
+
+export async function tenantLogin(
+  _currentState: unknown,
+  formData: FormData
+) {
+  const email = formData.get("email") as string
+  const password = formData.get("password") as string
+
+  try {
+    await sdk.auth
+      .login("user", "emailpass", { email, password })
+      .then(async (token) => {
+        await setAuthToken(token as string)
+        const customerCacheTag = await getCacheTag("customers")
+        revalidateTag(customerCacheTag)
+      })
+  } catch (error: any) {
+    return error.toString()
+  }
+
+  try {
+    await transferCart()
+  } catch (error: any) {
+    return error.toString()
   }
 }
 

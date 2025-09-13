@@ -5,10 +5,10 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 import Input from "@modules/common/components/input"
 import ErrorMessage from "@modules/checkout/components/error-message"
 import { SubmitButton } from "@modules/checkout/components/submit-button"
-import { login } from "@lib/data/customer"
+import { tenantLogin } from "@lib/data/tenant"
 
 const TenantLogin = () => {
-  const [message, formAction] = useActionState(login, null)
+  const [message, formAction] = useActionState(tenantLogin, null)
 
   return (
     <div className="max-w-sm flex flex-col items-center" data-testid="tenant-login-page">
