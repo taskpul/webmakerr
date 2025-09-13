@@ -59,7 +59,10 @@ export const updateCustomer = async (body: HttpTypes.StoreUpdateCustomer) => {
   return updateRes
 }
 
-export async function signup(_currentState: unknown, formData: FormData) {
+export async function signup(
+  _currentState: unknown,
+  formData: FormData
+): Promise<string | null> {
   const password = formData.get("password") as string
   const customerForm = {
     email: formData.get("email") as string,
@@ -113,7 +116,7 @@ export async function signup(_currentState: unknown, formData: FormData) {
 
     await transferCart()
 
-    return createdCustomer
+    return null
   } catch (error: any) {
     return error.toString()
   }
