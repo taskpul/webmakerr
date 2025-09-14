@@ -44,13 +44,14 @@ const Hero = () => {
               height="321"
               src="https://ab9f9faf.sibforms.com/serve/MUIFAMMrfQVbv9lWk-rutNm5l4-bAEm0F30RuaKo-r_cMaSGMmk9nZWN462-P5yYBJ09TYEikHA0kebWFvLpIC2npJK0-nNTENNmKMTgmnk_zd78VC0qw3XowB_2kNiyiNO5Yr1wq-kJF9Y3-NBHEdZSKiUP9RUYltk7Ci0asd-nBbsNBPxsWh3h5V-e4Qnw_KNMc1sedtzEPID3"
               frameBorder="0"
-              scrolling="auto"
+              scrolling="no"
               allowFullScreen
               style={{
                 display: "block",
                 marginLeft: "auto",
                 marginRight: "auto",
                 maxWidth: "100%",
+                overflow: "hidden",
               }}
             />
           </div>
