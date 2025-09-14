@@ -60,3 +60,7 @@ Join our [Discord server](https://discord.com/invite/medusajs) to meet other com
 - [Twitter](https://twitter.com/medusajs)
 - [LinkedIn](https://www.linkedin.com/company/medusajs)
 - [Medusa Blog](https://medusajs.com/blog/)
+
+## Order Confirmation Emails
+
+This project sends order confirmation emails using the Bravo API. Set the `BRAVO_API_KEY` environment variable (see `.env.example`) with your Bravo API key to enable email notifications to buyers after checkout.
