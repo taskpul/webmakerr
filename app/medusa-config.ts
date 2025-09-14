@@ -18,4 +18,24 @@ module.exports = defineConfig({
       resolve: "./src/modules/invoice-generator"
     },
   ],
+  {
+      resolve: "@medusajs/notification",
+      options: {
+        providers: [
+          {
+            resolve: "./src/services/bravo",
+            id: "bravo",
+            options: {
+              api_key: process.env.BRAVO_API_KEY!,
+              from: {
+                email: "info@webmakerr.com",
+                name: "Webmakerr",
+              },
+              channels: ["email"],
+            },
+          },
+        ],
+      },
+    },
+  ],
 })
