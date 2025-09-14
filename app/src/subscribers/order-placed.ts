@@ -4,13 +4,13 @@ import { generateInvoicePdfWorkflow } from "../workflows/generate-invoice-pdf"
 export default async function orderPlacedHandler({
   event: { data },
   container,
-}: SubscriberArgs<{
-  id: string
-}>) {
+}: SubscriberArgs<{ id: string }>) {
   const query = container.resolve("query")
   const notificationModuleService = container.resolve("notification")
 
-  const { data: [order] } = await query.graph({
+  const {
+    data: [order],
+  } = await query.graph({
     entity: "order",
     fields: [
       "id",
@@ -29,42 +29,45 @@ export default async function orderPlacedHandler({
       "subtotal",
       "discount_total",
     ],
-    filters: {
-      id: data.id
-    }
+    filters: { id: data.id },
   })
 
-  const { result: {
-    pdf_buffer
-  } } = await generateInvoicePdfWorkflow(container)
-    .run({
-      input: {
-        order_id: data.id
-      }
-    })
+  const {
+    result: { pdf_buffer },
+  } = await generateInvoicePdfWorkflow(container).run({
+    input: { order_id: data.id },
+  })
 
   const buffer = Buffer.from(pdf_buffer)
+  const base64 = buffer.toString("base64")
 
-  // Convert to binary string to pass as attachment
-  const binaryString = [...buffer]
-    .map(byte => byte.toString(2).padStart(8, '0'))
-    .join('')
+  const itemsList = order.items
+    .map(
+      (item) =>
+        `<li>${item.variant?.product?.title ?? item.title} x ${item.quantity}</li>`
+    )
+    .join("")
+
+  const html = `<p>Thank you for your order!</p>
+<p>Order #${order.display_id}</p>
+<ul>${itemsList}</ul>
+<p>Total: ${order.total} ${order.currency_code.toUpperCase()}</p>`
 
   await notificationModuleService.createNotifications({
     to: order.email || "",
-    template: "order-placed",
     channel: "email",
-    // for testing:
-    // channel: "feed",
-    data: order,
+    content: {
+      subject: `Order ${order.display_id} confirmation`,
+      html,
+    },
     attachments: [
       {
-        content: binaryString,
+        content: base64,
         filename: `invoice-${order.id}.pdf`,
         content_type: "application/pdf",
-        disposition: "attachment"
-      }
-    ]
+        disposition: "attachment",
+      },
+    ],
   })
 }
 
