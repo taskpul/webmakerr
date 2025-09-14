@@ -15,6 +15,10 @@ const requiredEnvs = [
     key: "NEXT_PUBLIC_BREVO_CONVERSATIONS_ID",
     description: "Brevo Conversations widget ID",
   },
+  {
+    key: "NEXT_PUBLIC_BREVO_SUBSCRIBE_FORM_URL",
+    description: "Brevo Subscribe Form iframe URL",
+  },
 ]
 
 function checkEnvVariables() {
