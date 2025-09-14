@@ -8,35 +8,43 @@ export default async function orderPlacedHandler({
   const query = container.resolve("query")
   const notificationModuleService = container.resolve("notification")
 
+  const [
+    orderQuery,
+    pdfWorkflow,
+  ] = await Promise.all([
+    query.graph({
+      entity: "order",
+      fields: [
+        "id",
+        "display_id",
+        "created_at",
+        "currency_code",
+        "total",
+        "email",
+        "items.*",
+        "items.variant.*",
+        "items.variant.product.*",
+        "shipping_address.*",
+        "billing_address.*",
+        "shipping_methods.*",
+        "tax_total",
+        "subtotal",
+        "discount_total",
+      ],
+      filters: { id: data.id },
+    }),
+    generateInvoicePdfWorkflow(container).run({
+      input: { order_id: data.id },
+    }),
+  ])
+
   const {
     data: [order],
-  } = await query.graph({
-    entity: "order",
-    fields: [
-      "id",
-      "display_id",
-      "created_at",
-      "currency_code",
-      "total",
-      "email",
-      "items.*",
-      "items.variant.*",
-      "items.variant.product.*",
-      "shipping_address.*",
-      "billing_address.*",
-      "shipping_methods.*",
-      "tax_total",
-      "subtotal",
-      "discount_total",
-    ],
-    filters: { id: data.id },
-  })
+  } = orderQuery
 
   const {
     result: { pdf_buffer },
-  } = await generateInvoicePdfWorkflow(container).run({
-    input: { order_id: data.id },
-  })
+  } = pdfWorkflow
 
   const buffer = Buffer.from(pdf_buffer)
   const base64 = buffer.toString("base64")
