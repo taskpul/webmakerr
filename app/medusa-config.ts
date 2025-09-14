@@ -1,4 +1,5 @@
 import { loadEnv, defineConfig } from "@medusajs/framework/utils";
+import path from "path";
 
 loadEnv(process.env.NODE_ENV || "development", process.cwd());
 
@@ -22,7 +23,8 @@ module.exports = defineConfig({
   },
   plugins: [
     {
-      resolve: "./src/plugins/admin-registration-link",
+      resolve: path.join(__dirname, "src/plugins/admin-registration-link"),
+      options: {},
     },
   ],
   modules: [
