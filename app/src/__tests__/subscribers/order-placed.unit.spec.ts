@@ -1,4 +1,4 @@
-import orderPlacedHandler from "../order-placed"
+import orderPlacedHandler from "../../subscribers/order-placed"
 
 jest.mock("../../workflows/generate-invoice-pdf", () => ({
   generateInvoicePdfWorkflow: () => ({
