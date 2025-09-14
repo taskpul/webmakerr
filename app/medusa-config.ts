@@ -20,6 +20,11 @@ module.exports = defineConfig({
       cookieSecret: process.env.COOKIE_SECRET || "supersecret",
     },
   },
+  plugins: [
+    {
+      resolve: "./src/plugins/admin-registration-link",
+    },
+  ],
   modules: [
     {
       resolve: "./src/modules/invoice-generator",
