@@ -26,13 +26,13 @@ export default defineConfig({
           {
             resolve: "./src/services/bravo",
             id: "bravo",
+            channels: ["email"],
             options: {
               api_key: process.env.BRAVO_API_KEY!,
               from: {
                 email: "info@webmakerr.com",
                 name: "Webmakerr",
               },
-              channels: ["email"],
             },
           },
         ],
