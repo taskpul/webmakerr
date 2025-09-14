@@ -6,6 +6,7 @@ import { initiatePaymentSession } from "@lib/data/cart"
 import { CheckCircleSolid, CreditCard } from "@medusajs/icons"
 import { Button, Container, Heading, Text, clx } from "@medusajs/ui"
 import ErrorMessage from "@modules/checkout/components/error-message"
+import PaymentButton from "@modules/checkout/components/payment-button"
 import PaymentContainer, {
   StripeCardContainer,
 } from "@modules/checkout/components/payment-container"
@@ -75,9 +76,6 @@ const Payment = ({
   const handleSubmit = async () => {
     setIsLoading(true)
     try {
-      const shouldInputCard =
-        isStripeFunc(selectedPaymentMethod) && !activeSession
-
       const checkActiveSession =
         activeSession?.provider_id === selectedPaymentMethod
 
@@ -85,15 +83,7 @@ const Payment = ({
         await initiatePaymentSession(cart, {
           provider_id: selectedPaymentMethod,
         })
-      }
-
-      if (!shouldInputCard) {
-        return router.push(
-          pathname + "?" + createQueryString("step", "review"),
-          {
-            scroll: false,
-          }
-        )
+        router.refresh()
       }
     } catch (err: any) {
       setError(err.message)
@@ -185,21 +175,25 @@ const Payment = ({
             data-testid="payment-method-error-message"
           />
 
-          <Button
-            size="large"
-            className="mt-6"
-            onClick={handleSubmit}
-            isLoading={isLoading}
-            disabled={
-              (isStripe && !cardComplete) ||
-              (!selectedPaymentMethod && !paidByGiftcard)
-            }
-            data-testid="submit-payment-button"
-          >
-            {!activeSession && isStripeFunc(selectedPaymentMethod)
-              ? " Enter card details"
-              : "Continue to review"}
-          </Button>
+          {activeSession || paidByGiftcard ? (
+            <PaymentButton cart={cart} data-testid="submit-order-button" />
+          ) : (
+            <Button
+              size="large"
+              className="mt-6"
+              onClick={handleSubmit}
+              isLoading={isLoading}
+              disabled={
+                (isStripe && !cardComplete) ||
+                (!selectedPaymentMethod && !paidByGiftcard)
+              }
+              data-testid="submit-payment-button"
+            >
+              {!activeSession && isStripeFunc(selectedPaymentMethod)
+                ? " Enter card details"
+                : "Place order"}
+            </Button>
+          )}
         </div>
 
         <div className={isOpen ? "hidden" : "block"}>
