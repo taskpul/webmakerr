@@ -10,6 +10,7 @@ import {
   DeleteTenantSchema,
 } from "./admin/tenants/route"
 import { CreateAdminUserSchema } from "./admin/users/route"
+import { AdminRegisterSchema } from "./admin/register/route"
 
 export default defineMiddlewares({
   routes: [
@@ -18,6 +19,13 @@ export default defineMiddlewares({
       methods: ["POST"],
       middlewares: [
         validateAndTransformBody(PostInvoiceConfgSchema)
+      ]
+    },
+    {
+      matcher: "/admin/register",
+      methods: ["POST"],
+      middlewares: [
+        validateAndTransformBody(AdminRegisterSchema)
       ]
     },
     {
