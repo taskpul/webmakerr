@@ -1,5 +1,8 @@
 import { Button, Heading, Text } from "@medusajs/ui"
 
+const BREVO_SUBSCRIBE_FORM_URL =
+  process.env.NEXT_PUBLIC_BREVO_SUBSCRIBE_FORM_URL
+
 const Hero = () => {
   return (
     <section className="border-b border-ui-border-base bg-ui-bg-subtle">
@@ -38,23 +41,25 @@ const Hero = () => {
           </div>
         </div>
         <div className="w-full max-w-md">
-          <div className="flex flex-col gap-6 rounded-large border border-ui-border-base bg-ui-bg-base p-6 shadow-elevation-card-rest">
-            <iframe
-              width="388"
-              height="450"
-              src="https://ab9f9faf.sibforms.com/serve/MUIFAKJYPgbYI5YYwKwp176bF0N_esD7Qt78EZunadF2vXpIgLQjD9r0XN1Oee1lF0AJS0fgimb4JEmQBBjcRsYeNQuA6BDOovNOCAs6p77uQdzVqtEUrIhZk91FxFt_XVDBm9-pMw0Tw7dgmLbN1QNpsyqaDRHEnCoY0VTHPwegipTOlvIofjFNeU3rOWzFYPFjjGrjX0XaCAKV"
-              frameBorder="0"
-              scrolling="no"
-              allowFullScreen
-              style={{
-                display: "block",
-                marginLeft: "auto",
-                marginRight: "auto",
-                maxWidth: "100%",
-                overflow: "hidden",
-              }}
-            />
-          </div>
+          {BREVO_SUBSCRIBE_FORM_URL && (
+            <div className="flex flex-col gap-6 rounded-large border border-ui-border-base bg-ui-bg-base p-6 shadow-elevation-card-rest">
+              <iframe
+                width="388"
+                height="450"
+                src={BREVO_SUBSCRIBE_FORM_URL}
+                frameBorder="0"
+                scrolling="no"
+                allowFullScreen
+                style={{
+                  display: "block",
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                  maxWidth: "100%",
+                  overflow: "hidden",
+                }}
+              />
+            </div>
+          )}
         </div>
       </div>
     </section>

@@ -118,6 +118,14 @@ To enable Facebook Pixel tracking, add the following to your `.env.local` file:
 NEXT_PUBLIC_FACEBOOK_PIXEL_ID=<your-facebook-pixel-id>
 ```
 
+# Newsletter subscription
+
+To configure the Brevo signup form shown on the home page, set the following in your `.env.local` file:
+
+```
+NEXT_PUBLIC_BREVO_SUBSCRIBE_FORM_URL=<your-brevo-subscribe-form-url>
+```
+
 # Resources
 
 ## Learn more about Medusa
