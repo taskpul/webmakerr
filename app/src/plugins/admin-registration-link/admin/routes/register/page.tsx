@@ -30,7 +30,12 @@ export default function Register() {
 
   const handleSubmit = form.handleSubmit(async (values) => {
     setServerError(null)
-    const res = await fetch("/admin/register", {
+
+    const backendUrl =
+      (import.meta.env.VITE_MEDUSA_ADMIN_BACKEND_URL as string | undefined) ??
+      window.location.origin
+
+    const res = await fetch(new URL("/admin/register", backendUrl).toString(), {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),
