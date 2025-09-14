@@ -1,15 +1,5 @@
 import { Button, Heading, Text } from "@medusajs/ui"
 
-const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
-
-const dates = [
-  [null, null, null, null, 1, 2, 3],
-  [4, 5, 6, 7, 8, 9, 10],
-  [11, 12, 13, 14, 15, 16, 17],
-  [18, 19, 20, 21, 22, 23, 24],
-  [25, 26, 27, 28, 29, 30, 31],
-]
-
 const Hero = () => {
   return (
     <section className="border-b border-ui-border-base bg-ui-bg-subtle">
@@ -49,50 +39,20 @@ const Hero = () => {
         </div>
         <div className="w-full max-w-md">
           <div className="flex flex-col gap-6 rounded-large border border-ui-border-base bg-ui-bg-base p-6 shadow-elevation-card-rest">
-            <div className="flex items-center gap-4">
-              <div className="h-10 w-10 rounded-full bg-grey-20" />
-              <div>
-                <Heading level="h3" className="text-base font-bold text-ui-fg-base">
-                  Emma Brown
-                </Heading>
-                <Text className="text-small-regular text-ui-fg-subtle">
-                  Office Hours
-                </Text>
-              </div>
-            </div>
-            <div>
-              <div className="flex items-center justify-between">
-                <Heading level="h3" className="text-base font-bold text-ui-fg-base">
-                  May 2015
-                </Heading>
-                <div className="flex gap-2 text-ui-fg-muted">
-                  <span>&lt;</span>
-                  <span>&gt;</span>
-                </div>
-              </div>
-              <table className="mt-4 w-full text-center text-small-regular text-ui-fg-base">
-                <thead>
-                  <tr className="text-ui-fg-muted">
-                    {days.map((d) => (
-                      <th key={d} className="w-8">
-                        {d}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {dates.map((week, i) => (
-                    <tr key={i}>
-                      {week.map((d, j) => (
-                        <td key={j} className="p-1">
-                          {d ?? ""}
-                        </td>
-                      ))}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+            <iframe
+              width="388"
+              height="321"
+              src="https://ab9f9faf.sibforms.com/serve/MUIFAMMrfQVbv9lWk-rutNm5l4-bAEm0F30RuaKo-r_cMaSGMmk9nZWN462-P5yYBJ09TYEikHA0kebWFvLpIC2npJK0-nNTENNmKMTgmnk_zd78VC0qw3XowB_2kNiyiNO5Yr1wq-kJF9Y3-NBHEdZSKiUP9RUYltk7Ci0asd-nBbsNBPxsWh3h5V-e4Qnw_KNMc1sedtzEPID3"
+              frameBorder="0"
+              scrolling="auto"
+              allowFullScreen
+              style={{
+                display: "block",
+                marginLeft: "auto",
+                marginRight: "auto",
+                maxWidth: "100%",
+              }}
+            />
           </div>
         </div>
       </div>
