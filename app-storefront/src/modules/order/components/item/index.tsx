@@ -12,6 +12,16 @@ type ItemProps = {
 }
 
 const Item = ({ item, currencyCode }: ItemProps) => {
+  const productMeta =
+    "product" in item
+      ? ((item as HttpTypes.StoreOrderLineItem).product?.metadata as
+          | Record<string, unknown>
+          | undefined)
+      : undefined
+  const downloadLink =
+    typeof productMeta?.download_link === "string"
+      ? (productMeta.download_link as string)
+      : null
   return (
     <Table.Row className="w-full" data-testid="product-row">
       <Table.Cell className="!pl-0 p-4 w-24">
@@ -28,6 +38,16 @@ const Item = ({ item, currencyCode }: ItemProps) => {
           {item.product_title}
         </Text>
         <LineItemOptions variant={item.variant} data-testid="product-variant" />
+        {downloadLink && (
+          <a
+            href={downloadLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-ui-fg-interactive text-small-regular block mt-2"
+          >
+            Download
+          </a>
+        )}
       </Table.Cell>
 
       <Table.Cell className="!pr-0">

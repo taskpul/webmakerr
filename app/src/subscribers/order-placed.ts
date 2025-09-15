@@ -24,6 +24,9 @@ export default async function orderPlacedHandler({
         "items.*",
         "items.variant.*",
         "items.variant.product.*",
+        // Ensure we retrieve the product's metadata which may contain
+        // the digital download information
+        "items.variant.product.metadata",
         "shipping_address.*",
         "billing_address.*",
         "shipping_methods.*",
@@ -50,10 +53,23 @@ export default async function orderPlacedHandler({
   const base64 = buffer.toString("base64")
 
   const itemsList = order.items
-    .map(
-      (item) =>
-        `<li>${item.variant?.product?.title ?? item.title} x ${item.quantity}</li>`
-    )
+    .map((item) => {
+      const title = item.variant?.product?.title ?? item.title
+      const qty = item.quantity
+      const metadata = item.variant?.product?.metadata as
+        | Record<string, unknown>
+        | undefined
+      const link =
+        typeof metadata?.download_link === "string"
+          ? (metadata.download_link as string)
+          : null
+
+      const linkHtml = link
+        ? ` - <a href="${link}">Download</a>`
+        : ""
+
+      return `<li>${title} x ${qty}${linkHtml}</li>`
+    })
     .join("")
 
   const html = `<p>Thank you for your order!</p>
