@@ -68,16 +68,17 @@ const StripePaymentButton = ({
 
   const stripe = useStripe()
   const elements = useElements()
-  const card = elements?.getElement("card")
 
   const session = cart.payment_collection?.payment_sessions?.find(
     (s) => s.status === "pending"
   )
 
-  const disabled = !stripe || !elements ? true : false
+  const disabled = !stripe || !elements
 
   const handlePayment = async () => {
     setSubmitting(true)
+
+    const card = elements?.getElement("card")
 
     if (!stripe || !elements || !card || !cart) {
       setSubmitting(false)
