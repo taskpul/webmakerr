@@ -7,6 +7,7 @@ import ErrorMessage from "@modules/checkout/components/error-message"
 import { SubmitButton } from "@modules/checkout/components/submit-button"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import { signup } from "@lib/data/customer"
+import { Heading, Text } from "@medusajs/ui"
 
 type Props = {
   setCurrentView: (view: LOGIN_VIEW) => void
@@ -20,13 +21,13 @@ const Register = ({ setCurrentView }: Props) => {
       className="max-w-sm flex flex-col items-center"
       data-testid="register-page"
     >
-      <h1 className="text-large-semi uppercase mb-6">
-        Become a Medusa Store Member
-      </h1>
-      <p className="text-center text-base-regular text-ui-fg-base mb-4">
-        Create your Medusa Store Member profile, and get access to an enhanced
+      <Heading level="h1" className="mb-6 uppercase text-large-semi">
+        Become a Webmakerr Member
+      </Heading>
+      <Text className="mb-4 text-center text-ui-fg-base">
+        Create your Webmakerr member profile, and get access to an enhanced
         shopping experience.
-      </p>
+      </Text>
       <form className="w-full flex flex-col" action={formAction}>
         <div className="flex flex-col w-full gap-y-2">
           <Input
@@ -68,8 +69,11 @@ const Register = ({ setCurrentView }: Props) => {
           />
         </div>
         <ErrorMessage error={message} data-testid="register-error" />
-        <span className="text-center text-ui-fg-base text-small-regular mt-6">
-          By creating an account, you agree to Medusa Store&apos;s{" "}
+        <Text
+          as="span"
+          className="mt-6 text-center text-ui-fg-base text-small-regular"
+        >
+          By creating an account, you agree to Webmakerr&apos;s{" "}
           <LocalizedClientLink
             href="/content/privacy-policy"
             className="underline"
@@ -84,12 +88,15 @@ const Register = ({ setCurrentView }: Props) => {
             Terms of Use
           </LocalizedClientLink>
           .
-        </span>
+        </Text>
         <SubmitButton className="w-full mt-6" data-testid="register-button">
           Join
         </SubmitButton>
       </form>
-      <span className="text-center text-ui-fg-base text-small-regular mt-6">
+      <Text
+        as="span"
+        className="mt-6 text-center text-ui-fg-base text-small-regular"
+      >
         Already a member?{" "}
         <button
           onClick={() => setCurrentView(LOGIN_VIEW.SIGN_IN)}
@@ -98,7 +105,7 @@ const Register = ({ setCurrentView }: Props) => {
           Sign in
         </button>
         .
-      </span>
+      </Text>
     </div>
   )
 }
