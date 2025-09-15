@@ -68,3 +68,4 @@ This project sends order confirmation emails using the Bravo API. Set the `BRAVO
 ## Digital Products
 
 Products can include a download link in their metadata. When provided, the link is added to order confirmation emails so customers can access their digital purchase.
+You can set this download link from the **Digital Product** section when creating or editing a product in the admin dashboard.
