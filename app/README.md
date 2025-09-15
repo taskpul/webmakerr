@@ -64,3 +64,7 @@ Join our [Discord server](https://discord.com/invite/medusajs) to meet other com
 ## Order Confirmation Emails
 
 This project sends order confirmation emails using the Bravo API. Set the `BRAVO_API_KEY` environment variable (see `.env.example`) with your Bravo API key to enable email notifications to buyers after checkout.
+
+## Digital Products
+
+Products can include a download link in their metadata. When provided, the link is added to order confirmation emails so customers can access their digital purchase.
